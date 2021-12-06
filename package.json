@@ -1,0 +1,27 @@
+{
+  "name": "tekken7-movelist",
+  "version": "1.0.0",
+  "description": "철권7의 기술 프레임표를 보여줍니다.",
+  "main": "scripts.js",
+  "scripts": {
+    "start": "webpack serve",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1043.0",
+    "d3": "^7.2.0",
+    "util": "^0.12.4"
+  }
+}
