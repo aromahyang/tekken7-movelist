@@ -1,4 +1,9 @@
-import s3 from './stores/s3.js';
+import characterJson from './assets/json/characters.json';
+import controlJson from './assets/json/controls.json';
+import languageJson from './assets/json/languages';
+import Header from './components/Header';
+import CharacterCard from './components/CharacterCard';
+import bgImg from './assets/images/background.jpg';
 import './index.css';
 
 class App {
@@ -10,35 +15,24 @@ class App {
     this.langIndex = 0;
     this.charMenuOpen = false;
     this.mounted();
+    this.render();
   }
 
   mounted() {
-    (async () => {
-      const control = await s3
-        .getObject({
-          Bucket: 'tekken7-movelist-assets',
-          Key: 'json/controls.json',
-        })
-        .promise();
-      const characters = await s3
-        .getObject({
-          Bucket: 'tekken7-movelist-assets',
-          Key: 'json/characters.json',
-        })
-        .promise();
-      this.controlMap = JSON.parse(control.Body.toString('utf-8'));
-      this.characters = JSON.parse(characters.Body.toString('utf-8'));
+    this.controlMap = controlJson;
+    this.characters = characterJson;
+    this.language = languageJson[this.characters[this.charIndex].first_name];
+  }
 
-      const language = await s3
-        .getObject({
-          Bucket: 'tekken7-movelist-assets',
-          Key: `json/language/${
-            this.characters[this.charIndex].first_name
-          }.json`,
-        })
-        .promise();
-      this.language = JSON.parse(language.Body.toString('utf-8'));
-    })();
+  render() {
+    document.body.style.backgroundImage = `url(${bgImg})`;
+    const header = new Header();
+    header.render();
+
+    this.characters.forEach((char, i) => {
+      const card = new CharacterCard({ ...char, index: i });
+      card.render();
+    });
   }
 }
 
