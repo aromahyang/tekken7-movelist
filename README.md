@@ -10,7 +10,9 @@
 
 [tekkenpunishment.com](https://tekkenpunishment.com/)
 
+[FRAMEDATA for TK7RF](https://play.google.com/store/apps/details?id=devkdr.framedatafortekken7fr)
+
 ## TODO
 
 - [ ] 다른 캐릭터 커맨드와 프레임 데이터 모으기 → 진행 중
-- [ ] 언어별 커맨드 이름 모으기
+- [ ] SSR(Server Side Rendering)
