@@ -5,13 +5,11 @@ class CharacterCard {
     const {
       first_name: firstName,
       last_name: lastName,
-      index,
       selected,
       $target,
     } = props;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.index = index;
     this.selected = selected;
     this.$target = $target;
     this.render();
@@ -22,13 +20,13 @@ class CharacterCard {
     <tr>
       <td class="character-card ${
         this.selected ? 'character-card--selected' : ''
-      }" data-character="${this.firstName}">
+      }" data-character="${this.firstName} ${this.lastName}">
         <img class="character-card__image" src="${
           thumbnails[this.firstName]
-        }" data-character="${this.firstName}" />
-        <p class="character-card__name" data-character="${this.firstName}">${
-      this.firstName
-    }</p>
+        }" data-character="${this.firstName} ${this.lastName}" />
+        <p class="character-card__name" data-character="${this.firstName} ${
+      this.lastName
+    }">${this.firstName}</p>
       </td>
     </tr>
     `;

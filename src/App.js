@@ -1,8 +1,10 @@
 import characterJson from './assets/json/characters.json';
 import controlJson from './assets/json/controls.json';
 import languageJson from './assets/json/languages';
+import movelistJson from './assets/json/movelists';
 import Header from './components/Header';
 import CharacterCard from './components/CharacterCard';
+import Table from './components/Table';
 import bgImg from './assets/images/background.jpg';
 import './index.css';
 
@@ -18,6 +20,7 @@ class App {
     this.$tbodyOfCharacters = document.querySelector(
       '.character-table > tbody'
     );
+    this.$tbodyOfMovelist = document.querySelector('.move-table > tbody');
 
     this.mounted();
     this.addEvent();
@@ -27,8 +30,9 @@ class App {
   mounted() {
     this.controlMap = controlJson;
     this.characters = characterJson;
-    this.character = this.characters[0].first_name;
-    this.language = languageJson[this.character];
+    const current = this.characters[0];
+    this.character = `${current.first_name} ${current.last_name}`;
+    this.language = languageJson[current.first_name];
   }
 
   addEvent() {
@@ -50,13 +54,19 @@ class App {
     new Header();
 
     this.$tbodyOfCharacters.innerHTML = '';
-    this.characters.forEach((char, i) => {
+    this.characters.forEach((char) => {
       new CharacterCard({
         ...char,
-        index: i,
-        selected: this.character === char.first_name,
+        selected: this.character === `${char.first_name} ${char.last_name}`,
         $target: this.$tbodyOfCharacters,
       });
+    });
+
+    const firstName = this.character.split(' ')[0];
+    new Table({
+      $target: this.$tbodyOfMovelist,
+      json: movelistJson[firstName],
+      fullName: this.character,
     });
   }
 }
