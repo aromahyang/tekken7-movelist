@@ -1,20 +1,25 @@
 import TableRow from './TableRow';
 
 class Table {
-  constructor({ $target, json, fullName }) {
+  constructor({ $target, movelistJson, languageJson, fullName, langIndex }) {
     this.$target = $target;
-    this.json = json;
+    this.movelistJson = movelistJson;
+    this.languageJson = languageJson;
     this.fullName = fullName;
+    this.langIndex = langIndex;
     this.render();
   }
 
   template() {
-    const { movelist } = this.json;
+    const { movelist } = this.movelistJson;
     return movelist
       .map((item) => {
-        return `
-        <tr></tr>
-      `;
+        const row = new TableRow({
+          data: item,
+          languageJson: this.languageJson,
+          langIndex: this.langIndex,
+        });
+        return row.template();
       })
       .join('');
   }
@@ -22,9 +27,9 @@ class Table {
   render() {
     const $header = document.querySelector('.movelist-header');
     const $name = $header.querySelector('.movelist-header__name');
-
     $name.innerHTML = `${this.fullName}`;
-    this.template();
+
+    this.$target.innerHTML = this.template();
   }
 }
 

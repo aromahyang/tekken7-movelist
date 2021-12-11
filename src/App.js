@@ -65,8 +65,10 @@ class App {
     const firstName = this.character.split(' ')[0];
     new Table({
       $target: this.$tbodyOfMovelist,
-      json: movelistJson[firstName],
+      movelistJson: movelistJson[firstName],
+      languageJson: languageJson[firstName],
       fullName: this.character,
+      langIndex: this.langIndex,
     });
   }
 }

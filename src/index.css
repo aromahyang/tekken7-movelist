@@ -338,6 +338,24 @@ h3 {
   table-layout: fixed;
 }
 
+.special-move-card-container {
+  position: relative;
+  color: #fff;
+  font-family: 'Core Sans G', Arial, sans-serif;
+  border: 2px solid rgba(12, 73, 90, 0.75);
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+  background-color: rgba(12, 73, 90, 0.75);
+}
+
+.special-move-card-container > p {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  font-weight: bold;
+}
+
 .move-card-container {
   display: -webkit-flex;
   display: flex;
