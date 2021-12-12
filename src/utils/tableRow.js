@@ -3,7 +3,7 @@
 export function getHitLevel(list) {
   return list.reduce((prev, curr, i) => {
     let level = '';
-    if (curr === 'H') {
+    if (curr === 'H' || curr === 'HP' || curr === 'AT') {
       level = 'HIGH';
     } else if (curr === 'M') {
       level = 'MID';
