@@ -46,13 +46,16 @@ class App {
       this.character = character;
       this.render();
     });
+
+    const $langSelect = document.querySelector('.movelist-header__select');
+    $langSelect.addEventListener('change', (e) => {
+      const { value } = e.target;
+      this.langIndex = +value;
+      this.renderTable();
+    });
   }
 
-  render() {
-    document.body.style.backgroundImage = `url(${bgImg})`;
-
-    new Header();
-
+  renderCharacterCards() {
     this.$tbodyOfCharacters.innerHTML = '';
     this.characters.forEach((char) => {
       new CharacterCard({
@@ -61,7 +64,9 @@ class App {
         $target: this.$tbodyOfCharacters,
       });
     });
+  }
 
+  renderTable() {
     const firstName = this.character.split(' ')[0];
     new Table({
       $target: this.$tbodyOfMovelist,
@@ -70,6 +75,15 @@ class App {
       fullName: this.character,
       langIndex: this.langIndex,
     });
+  }
+
+  render() {
+    document.body.style.backgroundImage = `url(${bgImg})`;
+
+    new Header();
+
+    this.renderCharacterCards();
+    this.renderTable();
   }
 }
 
