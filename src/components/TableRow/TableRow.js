@@ -34,10 +34,11 @@ class TableRow {
 
     if (isSpecial) {
       return `
-      <td class="special-move-card-container">
-        <div class="move-card-header__index">${id + 1}</div>
-        <p>${translatedName.slice(1, -1)}</p>
-      </td>`;
+        <td class="special-move-card-container">
+          <div class="move-card-header__index">${id + 1}</div>
+          <p>${translatedName.slice(1, -1)}</p>
+        </td>
+      `;
     }
 
     const header = new Header({
