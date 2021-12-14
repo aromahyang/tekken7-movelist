@@ -1,4 +1,4 @@
-import { getFrame } from '../../utils/tableRow';
+import { getFrame, getStartFrame } from '../../utils/tableRow';
 
 class Frames {
   constructor(props) {
@@ -11,7 +11,9 @@ class Frames {
       <div class="move-frame">
         <div class="move-frame__header">Start</div>
         <div class="move-frame__content">
-          ${startFrame}${startFrame !== '-' ? 'F' : ''}
+          ${getStartFrame(startFrame)}${
+      getStartFrame(startFrame) !== '-' ? 'F' : ''
+    }
         </div>
         <div class="move-frame__header">Block</div>
         ${getFrame('block', blockFrame)}

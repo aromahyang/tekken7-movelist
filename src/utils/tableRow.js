@@ -56,6 +56,15 @@ export function getDamage(list) {
   `;
 }
 
+export function getStartFrame(frame) {
+  const startIndex = frame.indexOf('(');
+  if (startIndex < 0) {
+    return frame;
+  } else {
+    return frame.slice(0, startIndex);
+  }
+}
+
 export function getFrame(type, frame) {
   let suffix = 'none';
   if (type === 'block') {

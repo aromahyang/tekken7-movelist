@@ -537,7 +537,7 @@ h3 {
 
 @media only screen and (max-width: 800px) {
   .right-card-pannel {
-    grid-template-columns: auto 75px;
+    grid-template-columns: auto 88px;
     margin-right: 0;
   }
 }
@@ -551,7 +551,7 @@ h3 {
 
 @media only screen and (max-width: 800px) {
   .move-frame {
-    width: 75px;
+    width: 88px;
     font-size: 12px;
   }
 }
