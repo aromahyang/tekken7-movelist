@@ -2,42 +2,104 @@
 
 export function getHitLevel(list) {
   return list.reduce((prev, curr, i) => {
-    let level = '';
+    const level = [];
     const target = curr.length > 2 ? curr[0] : curr;
-    if (target === 'H' || target === 'HP' || target === 'AT') {
-      level = 'HIGH';
-    } else if (target === 'M' || target === 'SM' || target === 'MM') {
-      level = 'MID';
-    } else if (target === 'L' || target === 'LL') {
-      level = 'LOW';
-    } else if (target === 'SP') {
-      level = 'SPECIAL';
-    } else if (target === 'UB') {
-      level = 'UNBLOCK';
+    switch (target) {
+      case 'H':
+      case 'HP':
+      case 'HT':
+      case 'AT': {
+        // HP: High Parrying, HT: High Throw, AT: Aerial Throw
+        level[0] = 'HIGH';
+        break;
+      }
+
+      case 'M':
+      case 'SM': {
+        level[0] = 'MID';
+        break;
+      }
+
+      case 'L': {
+        level[0] = 'LOW';
+        break;
+      }
+
+      case 'MH': {
+        level[0] = 'MID';
+        level[1] = 'HIGH';
+        break;
+      }
+
+      case 'MM': {
+        level[0] = 'MID';
+        level[1] = 'MID';
+        break;
+      }
+
+      case 'ML': {
+        level[0] = 'MID';
+        level[1] = 'LOW';
+        break;
+      }
+
+      case 'LH': {
+        level[0] = 'LOW';
+        level[1] = 'HIGH';
+        break;
+      }
+
+      case 'LL': {
+        level[0] = 'LOW';
+        level[1] = 'LOW';
+        break;
+      }
+
+      case 'SP': {
+        level[0] = 'SPECIAL';
+        break;
+      }
+
+      case 'UB': {
+        level[0] = 'UNBLOCK';
+        break;
+      }
+
+      default: {
+        level[0] = '';
+      }
     }
-    const className = level.toLowerCase();
 
     return (
       prev +
       `
-      <p class="move-card-hit-info__level--${className}">
-        ${level}
-      </p>
-      ${i < list.length - 1 ? '<i class="fas fa-chevron-right"></i>' : ''}
-    `
+        ${level
+          .map(
+            (l) => `
+            <p class="move-card-hit-info__level--${l.toLowerCase()}">
+              ${l}
+            </p>
+          `
+          )
+          .join('<p>/</p>')}
+        ${i < list.length - 1 ? '<i class="fas fa-chevron-right"></i>' : ''}
+      `
     );
   }, '');
 }
 
 export function getDamage(list) {
   const sum = list.reduce((prev, curr) => {
-    const index = curr.indexOf('x');
-    if (index < 0) {
-      return prev + +curr;
+    const parenthesisIndex = curr.indexOf('(');
+    const target =
+      parenthesisIndex < 0 ? curr : curr.slice(0, parenthesisIndex);
+    const xIndex = target.indexOf('x');
+    if (xIndex < 0) {
+      return prev + +target;
     }
 
-    const num1 = curr.slice(0, index);
-    const num2 = curr.slice(index + 1);
+    const num1 = target.slice(0, xIndex);
+    const num2 = target.slice(xIndex + 1);
     return prev + +num1 * +num2;
   }, 0);
   return `

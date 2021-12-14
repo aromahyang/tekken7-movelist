@@ -20,7 +20,9 @@ class CharacterCard {
     <tr>
       <td class="character-card ${
         this.selected ? 'character-card--selected' : ''
-      }" data-character="${this.firstName} ${this.lastName}">
+      }" data-character="${this.firstName} ${this.lastName}" ${
+      window.innerWidth <= 800 ? 'colspan="2"' : ''
+    }>
         <img class="character-card__image" src="${
           thumbnails[this.firstName]
         }" data-character="${this.firstName} ${this.lastName}" />

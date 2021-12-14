@@ -17,6 +17,7 @@ class App {
     this.langIndex = 0;
     this.charMenuOpen = false;
 
+    this.$charContainer = document.querySelector('.character-container');
     this.$tbodyOfCharacters = document.querySelector(
       '.character-table > tbody'
     );
@@ -45,6 +46,20 @@ class App {
       const { character } = target.dataset;
       this.character = character;
       this.render();
+      this.charMenuOpen = false;
+      this.$charContainer.style.display = 'none';
+    });
+
+    const $menuButton = document.querySelector('.movelist-header__button');
+    $menuButton.addEventListener('click', () => {
+      this.charMenuOpen = true;
+      this.$charContainer.style.display = 'block';
+    });
+
+    const $closeButton = document.querySelector('.character-table__close');
+    $closeButton.addEventListener('click', () => {
+      this.charMenuOpen = false;
+      this.$charContainer.style.display = 'none';
     });
 
     const $langSelect = document.querySelector('.movelist-header__select');
