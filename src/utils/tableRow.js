@@ -3,14 +3,17 @@
 export function getHitLevel(list) {
   return list.reduce((prev, curr, i) => {
     let level = '';
-    if (curr === 'H' || curr === 'HP' || curr === 'AT') {
+    const target = curr.length > 2 ? curr[0] : curr;
+    if (target === 'H' || target === 'HP' || target === 'AT') {
       level = 'HIGH';
-    } else if (curr === 'M') {
+    } else if (target === 'M' || target === 'SM' || target === 'MM') {
       level = 'MID';
-    } else if (curr === 'L') {
+    } else if (target === 'L' || target === 'LL') {
       level = 'LOW';
-    } else if (curr === 'SP') {
+    } else if (target === 'SP') {
       level = 'SPECIAL';
+    } else if (target === 'UB') {
+      level = 'UNBLOCK';
     }
     const className = level.toLowerCase();
 
