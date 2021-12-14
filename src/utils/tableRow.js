@@ -28,11 +28,18 @@ export function getHitLevel(list) {
 
 export function getDamage(list) {
   const sum = list.reduce((prev, curr) => {
-    return prev + +curr;
+    const index = curr.indexOf('x');
+    if (index < 0) {
+      return prev + +curr;
+    }
+
+    const num1 = curr.slice(0, index);
+    const num2 = curr.slice(index + 1);
+    return prev + +num1 * +num2;
   }, 0);
   return `
     <span class="move-card-hit-info__sum">
-      ${sum}
+      ${list.length === 1 && list[0] === '-' ? '-' : sum}
     </span>
     ${
       list.length > 1
