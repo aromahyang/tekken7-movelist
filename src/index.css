@@ -16,6 +16,20 @@ h3 {
 
 button {
   border: 0;
+  cursor: pointer;
+}
+
+.icon-button {
+  width: 30px;
+  padding: 3px 0px 3px 0px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 6px #0af1f5;
+  border: 1px solid rgba(12, 73, 90, 0.75);
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 @media only screen and (max-width: 800px) {
@@ -150,7 +164,6 @@ button {
     font-size: 25px;
     text-shadow: 0 0 10px #fd0106;
     background-color: transparent;
-    cursor: pointer;
   }
 }
 
@@ -234,7 +247,6 @@ button {
   max-width: 970px;
   height: 100%;
   box-sizing: border-box;
-  overflow: hidden auto;
 }
 
 @media only screen and (max-width: 800px) {
@@ -258,24 +270,13 @@ button {
 @media only screen and (max-width: 800px) {
   .movelist-header {
     width: 100%;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     margin-left: 0;
   }
 }
 
 .movelist-header__button {
   display: none;
-  width: 30px;
-  padding: 3px 0px 3px 0px;
-  font-size: 16px;
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 0 6px #0af1f5;
-  border: 1px solid rgba(12, 73, 90, 0.75);
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.75);
-  cursor: pointer;
 }
 
 @media only screen and (max-width: 800px) {
@@ -297,6 +298,17 @@ button {
     margin: 0;
     font-size: 22px;
   }
+}
+
+.movelist-header__right {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
 }
 
 .movelist-header__language {
@@ -346,6 +358,15 @@ button {
   .movelist-header__option {
     font-size: 15px;
   }
+}
+
+.scroll-top-button {
+}
+
+.move-table-wrapper {
+  height: calc(100% - 32px);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .move-table {

@@ -83,6 +83,13 @@ class App {
       this.langIndex = +value;
       this.renderTable();
     });
+
+    const $scrollTopButton = document.querySelector('.scroll-top-button');
+    $scrollTopButton.addEventListener('click', () => {
+      document
+        .querySelector('.move-table-wrapper')
+        .scroll({ top: 0, behavior: 'smooth' });
+    });
   }
 
   renderCharacterCards() {
