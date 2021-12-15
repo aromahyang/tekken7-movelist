@@ -37,6 +37,17 @@ class App {
   }
 
   addEvent() {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth <= 800) {
+        this.$charContainer.style.display = this.charMenuOpen
+          ? 'block'
+          : 'none';
+      } else {
+        this.$charContainer.style.display = 'block';
+      }
+      this.renderCharacterCards();
+    });
+
     this.$tbodyOfCharacters.addEventListener('click', (e) => {
       const { target } = e;
       if (!target.dataset.character) {
