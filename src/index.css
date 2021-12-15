@@ -262,16 +262,14 @@ button {
   display: flex;
   justify-content: space-between;
   -webkit-align-items: center;
-  align-items: center;
-  margin-left: 24px;
+  align-items: stretch;
+  margin-bottom: 4px;
   font-family: Trump, sans-serif;
 }
 
 @media only screen and (max-width: 800px) {
   .movelist-header {
     width: 100%;
-    margin-bottom: 4px;
-    margin-left: 0;
   }
 }
 
@@ -285,9 +283,22 @@ button {
   }
 }
 
+@media only screen and (max-width: 800px) {
+  .movelist-header__center {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
 .movelist-header__name {
   color: #fff;
-  margin: 3px 15px 3px 0;
   font-size: 40px;
   text-shadow: 0 0 6px #f00000;
   text-transform: uppercase;
@@ -325,6 +336,7 @@ button {
   -moz-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  justify-content: space-between;
   -webkit-align-items: flex-end;
   align-items: flex-end;
 }
@@ -542,6 +554,7 @@ button {
 .move-card-hit-info__level {
   display: -webkit-flex;
   display: flex;
+  -webkit-align-items: center;
   align-items: center;
 }
 
