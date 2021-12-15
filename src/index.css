@@ -135,12 +135,17 @@ button {
 
 @media only screen and (max-width: 800px) {
   .character-table__close {
-    display: block;
+    display: table-cell;
   }
 
-  .character-table__close > button {
-    padding-top: 3px;
-    padding-left: 8px;
+  .close-button-wrapper {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    width: 30px;
+  }
+
+  .close-button-wrapper > button {
     color: #fff;
     font-size: 25px;
     text-shadow: 0 0 10px #fd0106;
