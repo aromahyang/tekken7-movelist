@@ -47,7 +47,9 @@ class App {
       this.character = character;
       this.render();
       this.charMenuOpen = false;
-      this.$charContainer.style.display = 'none';
+      if (window.innerWidth <= 800) {
+        this.$charContainer.style.display = 'none';
+      }
     });
 
     const $menuButton = document.querySelector('.movelist-header__button');
