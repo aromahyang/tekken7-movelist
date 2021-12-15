@@ -56,7 +56,9 @@ class App {
       this.$charContainer.style.display = 'block';
     });
 
-    const $closeButton = document.querySelector('.character-table__close');
+    const $closeButton = document.querySelector(
+      '.character-table__close > button'
+    );
     $closeButton.addEventListener('click', () => {
       this.charMenuOpen = false;
       this.$charContainer.style.display = 'none';

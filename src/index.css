@@ -138,6 +138,9 @@ button {
 @media only screen and (max-width: 800px) {
   .character-table__close {
     display: block;
+  }
+
+  .character-table__close > button {
     padding-top: 3px;
     padding-left: 8px;
     color: #fff;
