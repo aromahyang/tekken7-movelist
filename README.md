@@ -15,4 +15,6 @@
 ## TODO
 
 - [ ] 다른 캐릭터 커맨드와 프레임 데이터 모으기 → 진행 중
+- [ ] scroll top 버튼
+- [ ] 기술명 및 커맨드 검색 기능
 - [ ] SSR(Server Side Rendering)
