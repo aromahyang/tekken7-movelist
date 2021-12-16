@@ -273,24 +273,27 @@ button {
   }
 }
 
-.movelist-header__button {
+.movelist-header__left {
   display: none;
 }
 
 @media only screen and (max-width: 800px) {
-  .movelist-header__button {
+  .movelist-header__left {
     display: block;
   }
 }
 
+.movelist-header__center {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
 @media only screen and (max-width: 800px) {
   .movelist-header__center {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
     -webkit-align-items: center;
     align-items: center;
     justify-content: space-between;
