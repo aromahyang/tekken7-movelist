@@ -244,6 +244,12 @@ button {
 }
 
 .movelist-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100vw - 214px);
   max-width: 970px;
   height: 100%;
@@ -262,6 +268,8 @@ button {
   position: relative;
   display: -webkit-flex;
   display: flex;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
   justify-content: space-between;
   -webkit-align-items: center;
   align-items: stretch;
@@ -395,11 +403,8 @@ button {
   }
 }
 
-.scroll-top-button {
-}
-
 .move-table-wrapper {
-  height: calc(100% - 32px);
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
