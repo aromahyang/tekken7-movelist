@@ -47,6 +47,7 @@ class TableRow {
       hitCount,
     });
     const command = new Command({
+      language,
       command: this.languageJson[commandList][language],
       hitLevel,
       damage,

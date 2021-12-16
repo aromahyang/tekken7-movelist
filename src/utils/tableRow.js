@@ -1,4 +1,50 @@
 /* utils for table row */
+import { DIRECTIONS, BUTTONS, EXTRA_COMMAND } from './constants';
+
+function getCmdImgFromEng(command) {
+  const indexOfParenthesis = command.indexOf(')');
+  command =
+    indexOfParenthesis < 0 || indexOfParenthesis === command.length - 1
+      ? command
+      : command.slice(0, indexOfParenthesis + 1) +
+        ' ' +
+        command.slice(indexOfParenthesis + 1);
+  const chunks = command.split(' ');
+  const indexOfComma = chunks.findIndex((item) => item.includes(','));
+  const items = chunks.map((item, i) => {
+    const result = { text: item };
+    if (item.includes(',')) {
+      result.prev = false;
+      result.command = true;
+      result.value = item.split(',');
+    } else {
+      result.prev = i < indexOfComma;
+      result.command = EXTRA_COMMAND.includes(item);
+      result.value = item;
+    }
+    return result;
+  });
+  console.log(items);
+  return command;
+}
+
+function getCmdImgFromKr(command) {
+  return command;
+}
+
+function getCmdImgFromJp(command) {
+  return command;
+}
+
+export function getCommand(language, command) {
+  if (language === 'en') {
+    return getCmdImgFromEng(command);
+  } else if (language === 'kr') {
+    return getCmdImgFromKr(command);
+  } else {
+    return getCmdImgFromJp(command);
+  }
+}
 
 export function getHitLevel(list) {
   return list.reduce((prev, curr, i) => {
