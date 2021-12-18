@@ -32,7 +32,7 @@ class App {
     this.controlMap = controlJson;
     this.characters = characterJson;
     const current = this.characters[0];
-    this.character = `${current.first_name} ${current.last_name}`;
+    this.character = current.name;
     this.language = languageJson[current.first_name];
   }
 
@@ -40,10 +40,10 @@ class App {
     window.addEventListener('resize', () => {
       if (window.innerWidth <= 800) {
         this.$charContainer.style.display = this.charMenuOpen
-          ? 'table-cell'
+          ? 'block'
           : 'none';
       } else {
-        this.$charContainer.style.display = 'table-cell';
+        this.$charContainer.style.display = 'block';
       }
       this.renderCharacterCards();
     });
@@ -66,7 +66,7 @@ class App {
     const $menuButton = document.querySelector('.movelist-header__button');
     $menuButton.addEventListener('click', () => {
       this.charMenuOpen = true;
-      this.$charContainer.style.display = 'table-cell';
+      this.$charContainer.style.display = 'block';
     });
 
     const $closeButton = document.querySelector(
@@ -97,7 +97,7 @@ class App {
     this.characters.forEach((char) => {
       new CharacterCard({
         ...char,
-        selected: this.character === `${char.first_name} ${char.last_name}`,
+        selected: this.character === char.name,
         $target: this.$tbodyOfCharacters,
       });
     });

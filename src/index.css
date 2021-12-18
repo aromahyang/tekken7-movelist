@@ -125,6 +125,7 @@ button {
 .character-container {
   width: 200px;
   height: 100%;
+  overflow-y: auto;
 }
 
 @media only screen and (max-width: 800px) {

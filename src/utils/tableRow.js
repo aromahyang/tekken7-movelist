@@ -47,9 +47,9 @@ export function getCommand(language, command) {
 }
 
 export function getHitLevel(list) {
-  return list.reduce((prev, curr, i) => {
+  return list.map((item) => {
     const level = [];
-    const target = curr.length > 2 ? curr[0] : curr;
+    const target = item.length > 2 ? item[0] : item;
     switch (target) {
       case 'H':
       case 'HP':
@@ -115,23 +115,8 @@ export function getHitLevel(list) {
         level[0] = '';
       }
     }
-
-    return (
-      prev +
-      `
-        ${level
-          .map(
-            (l) => `
-            <p class="move-card-hit-info__level--${l.toLowerCase()}">
-              ${l}
-            </p>
-          `
-          )
-          .join('<p>/</p>')}
-        ${i < list.length - 1 ? '<i class="fas fa-chevron-right"></i>' : ''}
-      `
-    );
-  }, '');
+    return level;
+  });
 }
 
 export function getDamage(list) {
@@ -148,20 +133,8 @@ export function getDamage(list) {
     const num2 = target.slice(xIndex + 1);
     return prev + +num1 * +num2;
   }, 0);
-  return `
-    <span class="move-card-hit-info__sum">
-      ${list.length === 1 && list[0] === '-' ? '-' : sum}
-    </span>
-    ${
-      list.length > 1
-        ? `
-      <span class="move-card-hit-info__expression">
-        (${list.join('+')})
-      </span>
-          `
-        : ''
-    }
-  `;
+
+  return { sum: list.length === 1 && list[0] === '-' ? '-' : sum, exp: list.length ? list.join('+') : '' };
 }
 
 export function getStartFrame(frame) {
@@ -194,9 +167,5 @@ export function getFrame(type, frame) {
     suffix = 'none';
   }
 
-  return `
-    <div class="move-frame__content move-frame__${type}">
-      <p class="move-frame__content--${suffix}">${frame}</p>
-    </div>
-  `;
+  return { suffix, frame };
 }
