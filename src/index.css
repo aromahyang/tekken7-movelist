@@ -123,9 +123,14 @@ button {
 }
 
 .character-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: 200px;
   height: 100%;
-  overflow-y: auto;
 }
 
 @media only screen and (max-width: 800px) {
@@ -141,8 +146,32 @@ button {
   }
 }
 
+.character-content {
+  overflow-y: auto;
+}
+
+.character-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.character-content::-webkit-scrollbar-thumb {
+  background-color: rgba(12,73,90,.75);
+}
+
+.character-content::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,.1);
+  border: 1px solid rgba(12,73,90,.75);
+}
+
 .character-table {
+  position: relative;
   width: 100%;
+}
+
+.character-table__header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .character-table__close {
@@ -169,7 +198,7 @@ button {
   }
 }
 
-.character-table__header {
+.character-table__title {
   color: #fff;
   font-size: 40px;
   font-family: Trump, Arial, sans-serif;
@@ -177,7 +206,7 @@ button {
 }
 
 @media only screen and (max-width: 800px) {
-  .character-table__header {
+  .character-table__title {
     font-size: 25px;
   }
 }
@@ -185,6 +214,7 @@ button {
 .character-card {
   position: relative;
   height: 100px;
+  margin-right: 2px;
   border: 2px solid rgba(12, 73, 90, 0.75);
   -webkit-border-radius: 3px;
   border-radius: 3px;

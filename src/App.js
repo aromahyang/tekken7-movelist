@@ -18,9 +18,7 @@ class App {
     this.charMenuOpen = false;
 
     this.$charContainer = document.querySelector('.character-container');
-    this.$tbodyOfCharacters = document.querySelector(
-      '.character-table > tbody'
-    );
+    this.$tbodyOfCharacters = document.querySelector('.character-content');
     this.$tbodyOfMovelist = document.querySelector('.move-table > tbody');
 
     this.mounted();
@@ -39,10 +37,10 @@ class App {
     window.addEventListener('resize', () => {
       if (window.innerWidth <= 800) {
         this.$charContainer.style.display = this.charMenuOpen
-          ? 'block'
+          ? 'flex'
           : 'none';
       } else {
-        this.$charContainer.style.display = 'block';
+        this.$charContainer.style.display = 'flex';
       }
       this.renderCharacterCards();
     });
@@ -65,7 +63,7 @@ class App {
     const $menuButton = document.querySelector('.movelist-header__button');
     $menuButton.addEventListener('click', () => {
       this.charMenuOpen = true;
-      this.$charContainer.style.display = 'block';
+      this.$charContainer.style.display = 'flex';
     });
 
     const $closeButton = document.querySelector(

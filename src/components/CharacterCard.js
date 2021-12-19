@@ -13,8 +13,7 @@ class CharacterCard {
 
   template() {
     return `
-    <tr>
-      <td
+      <div
         class="character-card ${this.selected ? 'character-card--selected' : ''}"
         data-character="${this.index}"
         ${window.innerWidth <= 800 ? 'colspan="2"' : ''}
@@ -30,8 +29,7 @@ class CharacterCard {
         >
           ${this.name}
         </p>
-      </td>
-    </tr>
+      </div>
     `;
   }
 
