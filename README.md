@@ -16,4 +16,5 @@
 - [x] scroll top 버튼
 - [ ] 기술명 및 커맨드 검색 기능
 - [ ] 용어 사전
+- [ ] 팬더 추가
 - [ ] SSR(Server Side Rendering)
