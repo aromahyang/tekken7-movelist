@@ -2,9 +2,10 @@ import thumbnails from '../assets/thumbnails';
 
 class CharacterCard {
   constructor(props) {
-    const { name, thumbnail, selected, $target } = props;
-    this.name = name;
-    this.thumbnail = thumbnail;
+    const { cardname, filename, index, selected, $target } = props;
+    this.name = cardname;
+    this.index = index;
+    this.thumbnail = filename.toLowerCase();
     this.selected = selected;
     this.$target = $target;
     this.render();
@@ -15,17 +16,17 @@ class CharacterCard {
     <tr>
       <td
         class="character-card ${this.selected ? 'character-card--selected' : ''}"
-        data-character="${this.name}"
+        data-character="${this.index}"
         ${window.innerWidth <= 800 ? 'colspan="2"' : ''}
       >
         <img
           class="character-card__image"
           src="${thumbnails[this.thumbnail]}"
-          data-character="${this.name}"
+          data-character="${this.index}"
         />
         <p
           class="character-card__name"
-          data-character="${this.name}"
+          data-character="${this.index}"
         >
           ${this.name}
         </p>

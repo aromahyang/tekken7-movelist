@@ -13,7 +13,7 @@ class App {
     this.controlMap;
     this.language;
     this.characters;
-    this.character = '';
+    this.charIndex = 0;
     this.langIndex = 0;
     this.charMenuOpen = false;
 
@@ -32,7 +32,6 @@ class App {
     this.controlMap = controlJson;
     this.characters = characterJson;
     const current = this.characters[0];
-    this.character = current.name;
     this.language = languageJson[current.first_name];
   }
 
@@ -55,7 +54,7 @@ class App {
       }
 
       const { character } = target.dataset;
-      this.character = character;
+      this.charIndex = +character;
       this.render();
       this.charMenuOpen = false;
       if (window.innerWidth <= 800) {
@@ -93,24 +92,26 @@ class App {
   }
 
   renderCharacterCards() {
+    const current = this.characters[this.charIndex];
     this.$tbodyOfCharacters.innerHTML = '';
-    this.characters.forEach((char) => {
+    this.characters.forEach((char, i) => {
       new CharacterCard({
         ...char,
-        selected: this.character === char.name,
+        index: i,
+        selected: char.name === current.name,
         $target: this.$tbodyOfCharacters,
       });
     });
   }
 
   renderTable() {
-    const firstName = this.character.split(' ')[0];
+    const { name, filename } = this.characters[this.charIndex];
     new Table({
-      $target: this.$tbodyOfMovelist,
-      movelistJson: movelistJson[firstName],
-      languageJson: languageJson[firstName],
-      fullName: this.character,
+      name,
+      movelistJson: movelistJson[filename],
+      languageJson: languageJson[filename],
       langIndex: this.langIndex,
+      $target: this.$tbodyOfMovelist,
     });
   }
 

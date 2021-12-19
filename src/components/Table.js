@@ -1,11 +1,11 @@
 import TableRow from './TableRow';
 
 class Table {
-  constructor({ $target, movelistJson, languageJson, fullName, langIndex }) {
+  constructor({ $target, movelistJson, languageJson, name, langIndex }) {
     this.$target = $target;
     this.movelistJson = movelistJson;
     this.languageJson = languageJson;
-    this.fullName = fullName;
+    this.name = name;
     this.langIndex = langIndex;
     this.render();
   }
@@ -27,7 +27,7 @@ class Table {
   render() {
     const $header = document.querySelector('.movelist-header');
     const $name = $header.querySelector('.movelist-header__name');
-    $name.innerHTML = `${this.fullName}`;
+    $name.innerHTML = `${this.name}`;
 
     this.$target.innerHTML = this.template();
   }

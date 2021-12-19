@@ -24,7 +24,7 @@ class Command {
                   </p>
                 `)
                 .join('<p>/</p>')}
-              ${i < hitLevel.length
+              ${i < hitLevel.length - 1
                 ? `
                   <i class="fas fa-chevron-right"></i>
                 `
