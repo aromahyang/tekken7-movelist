@@ -156,11 +156,13 @@ button {
 
 .character-content::-webkit-scrollbar-thumb {
   background-color: rgba(12,73,90,.75);
+  border-radius: 2px;
 }
 
 .character-content::-webkit-scrollbar-track {
   background-color: rgba(0,0,0,.1);
   border: 1px solid rgba(12,73,90,.75);
+  border-radius: 2px;
 }
 
 .character-table {
@@ -446,11 +448,13 @@ button {
 
 .move-table-wrapper::-webkit-scrollbar-thumb {
   background-color: rgba(12,73,90,.75);
+  border-radius: 2px;
 }
 
 .move-table-wrapper::-webkit-scrollbar-track {
   background-color: rgba(0,0,0,.1);
   border: 1px solid rgba(12,73,90,.75);
+  border-radius: 2px;
 }
 
 .move-table {
