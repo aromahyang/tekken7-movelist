@@ -436,6 +436,10 @@ button {
   }
 }
 
+.information-button {
+  margin-right: 8px;
+}
+
 .move-table-wrapper {
   height: 100%;
   overflow-x: hidden;

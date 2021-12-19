@@ -1,6 +1,3 @@
-export const LANGUAGE_LIST = ['en', 'kr', 'jp'];
-export const BUCKET = 'tekken7-movelist-assets';
-
 export const EXTRA_COMMAND = ['or', '[', ']'];
 export const DIRECTIONS = {
   '↙': '1',

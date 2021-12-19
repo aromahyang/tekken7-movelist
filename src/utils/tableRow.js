@@ -1,5 +1,5 @@
 /* utils for table row */
-import { DIRECTIONS, BUTTONS, EXTRA_COMMAND } from './constants';
+import { DIRECTIONS, BUTTONS, EXTRA_COMMAND } from './commands';
 
 function getCmdImgFromEng(command) {
   // const indexOfParenthesis = command.indexOf(')');

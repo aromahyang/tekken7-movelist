@@ -6,6 +6,12 @@ import Header from './components/Header';
 import CharacterCard from './components/CharacterCard';
 import Table from './components/Table';
 import bgImg from './assets/images/background.jpg';
+import {
+  CHARACTER_INDEX_COOKIE,
+  LANGUAGE_INDEX_COOKIE,
+  getCookie,
+  saveCookie
+} from './utils/cookies';
 import './index.css';
 
 class App {
@@ -20,6 +26,7 @@ class App {
     this.$charContainer = document.querySelector('.character-container');
     this.$tbodyOfCharacters = document.querySelector('.character-content');
     this.$tbodyOfMovelist = document.querySelector('.move-table > tbody');
+    this.$langSelect = document.querySelector('.movelist-header__select');
 
     this.mounted();
     this.addEvent();
@@ -29,7 +36,10 @@ class App {
   mounted() {
     this.controlMap = controlJson;
     this.characters = characterJson;
-    const current = this.characters[0];
+    this.charIndex = getCookie(CHARACTER_INDEX_COOKIE) ?? 0;
+    const current = this.characters[this.charIndex];
+    this.langIndex = getCookie(LANGUAGE_INDEX_COOKIE) ?? 0;
+    this.$langSelect[this.langIndex].selected = true;
     this.language = languageJson[current.first_name];
   }
 
@@ -53,6 +63,7 @@ class App {
 
       const { character } = target.dataset;
       this.charIndex = +character;
+      saveCookie(CHARACTER_INDEX_COOKIE, character);
       this.render();
       this.charMenuOpen = false;
       if (window.innerWidth <= 800) {
@@ -74,12 +85,15 @@ class App {
       this.$charContainer.style.display = 'none';
     });
 
-    const $langSelect = document.querySelector('.movelist-header__select');
-    $langSelect.addEventListener('change', (e) => {
+    this.$langSelect.addEventListener('change', (e) => {
       const { value } = e.target;
       this.langIndex = +value;
+      saveCookie(LANGUAGE_INDEX_COOKIE, value);
       this.renderTable();
     });
+
+    const $infoButton = document.querySelector('.information-button');
+    $infoButton.addEventListener('click', () => {});
 
     const $scrollTopButton = document.querySelector('.scroll-top-button');
     $scrollTopButton.addEventListener('click', () => {
