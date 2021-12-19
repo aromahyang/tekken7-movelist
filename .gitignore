@@ -1,6 +1,4 @@
 *.DS_Store
 node_modules
 .vscode
-assets
-src/assets
 build
