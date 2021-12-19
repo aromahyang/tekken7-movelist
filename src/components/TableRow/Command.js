@@ -29,7 +29,7 @@ class Command {
                   <i class="fas fa-chevron-right"></i>
                 `
                 : ''}
-            `)}
+            `).join('')}
           </div>
           <div class="move-card-hit-info__damage">
             <span class="move-card-hit-info__sum">
