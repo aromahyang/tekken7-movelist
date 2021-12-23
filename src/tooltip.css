@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'Trump';
+  src: url('./assets/fonts/TrumpGothicEastBold.ttf');
+}
+
+@font-face {
+  font-family: 'Core Sans G';
+  src: url('./assets/fonts/CoreSansG-Light.ttf');
+}
+
+.tooltip-container {
+  position: absolute;
+  display: none;
+  min-width: 160px;
+  height: 50%;
+  min-height: 240px;
+  background-color: rgba(0, 0, 0, 1);
+  border: 1px solid rgba(12, 73, 90, 0.75);
+  border-radius: 4px;
+  color: #fff;
+  z-index: 100;
+}
+
+.tooltip-container::before,
+.tooltip-container::after {
+  content: " ";
+  position: absolute;
+  right: 0;
+  border-style: solid;
+}
+
+.tooltip-container::before {
+  margin-right: 8px;
+  bottom: calc(100% + 1px);
+  border-color: transparent transparent rgba(12,73,90,.75) transparent;
+  border-width: 6px;
+}
+
+.tooltip-container::after {
+  margin-right: 9px;
+  bottom: 100%;
+  border-color: transparent transparent black transparent;
+  border-width: 5px;
+}
+
+.tooltip-content {
+  height: 100%;
+  font-family: 'Core Sans G', Arial, sans-serif;
+  font-size: 20px;
+  overflow: auto;
+}
+
+.tooltip-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tooltip-content::-webkit-scrollbar-thumb {
+  background-color: rgba(12,73,90,.75);
+  border-radius: 2px;
+}
+
+.tooltip-content::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,.1);
+  border: 1px solid rgba(12,73,90,.75);
+  border-radius: 2px;
+}
+
+@media only screen and (max-width: 800px) {
+  .tooltip-content {
+    font-size: 16px;
+  }
+}
+
+.tooltip-content > p {
+  padding: 4px 12px;
+}

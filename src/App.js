@@ -2,9 +2,7 @@ import characterJson from './assets/json/characters.json';
 import controlJson from './assets/json/controls.json';
 import languageJson from './assets/json/languages';
 import movelistJson from './assets/json/movelists';
-import Header from './components/Header';
-import CharacterCard from './components/CharacterCard';
-import Table from './components/Table';
+import { CharacterCard, Header, Information, Table } from './components';
 import bgImg from './assets/images/background.jpg';
 import {
   CHARACTER_INDEX_COOKIE,
@@ -13,6 +11,7 @@ import {
   saveCookie
 } from './utils/cookies';
 import './index.css';
+import './tooltip.css';
 
 class App {
   constructor() {
@@ -22,11 +21,14 @@ class App {
     this.charIndex = 0;
     this.langIndex = 0;
     this.charMenuOpen = false;
+    this.infoOpen = false;
 
     this.$charContainer = document.querySelector('.character-container');
     this.$tbodyOfCharacters = document.querySelector('.character-content');
     this.$tbodyOfMovelist = document.querySelector('.move-table > tbody');
     this.$langSelect = document.querySelector('.movelist-header__select');
+    this.$infoButton = document.querySelector('.information-button');
+    this.$tooltip = document.querySelector('.tooltip-container');
 
     this.mounted();
     this.addEvent();
@@ -41,6 +43,9 @@ class App {
     this.langIndex = getCookie(LANGUAGE_INDEX_COOKIE) ?? 0;
     this.$langSelect[this.langIndex].selected = true;
     this.language = languageJson[current.first_name];
+    
+    document.body.style.backgroundImage = `url(${bgImg})`;
+    new Header();
   }
 
   addEvent() {
@@ -53,6 +58,9 @@ class App {
         this.$charContainer.style.display = 'flex';
       }
       this.renderCharacterCards();
+      if (this.infoOpen) {
+        this.renderInformation();
+      }
     });
 
     this.$tbodyOfCharacters.addEventListener('click', (e) => {
@@ -94,10 +102,19 @@ class App {
       this.langIndex = +value;
       saveCookie(LANGUAGE_INDEX_COOKIE, value);
       this.renderTable();
+      if (this.infoOpen) {
+        this.renderInformation();
+      }
     });
 
-    const $infoButton = document.querySelector('.information-button');
-    $infoButton.addEventListener('click', () => {});
+    this.$infoButton.addEventListener('click', () => {
+      this.infoOpen = !this.infoOpen;
+      if (this.infoOpen) {
+        this.renderInformation();
+      } else {
+        this.$tooltip.style.display = 'none';
+      }
+    });
 
     const $scrollTopButton = document.querySelector('.scroll-top-button');
     $scrollTopButton.addEventListener('click', () => {
@@ -131,11 +148,11 @@ class App {
     });
   }
 
+  renderInformation() {
+    new Information({ $button: this.$infoButton, $target: this.$tooltip, langIndex: this.langIndex });
+  }
+
   render() {
-    document.body.style.backgroundImage = `url(${bgImg})`;
-
-    new Header();
-
     this.renderCharacterCards();
     this.renderTable();
   }
