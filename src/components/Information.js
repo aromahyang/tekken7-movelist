@@ -15,7 +15,7 @@ class Information {
       /[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\u4e00-\u9faf]/; // reference: https://stackoverflow.com/a/15034560
     const wordRegex = new RegExp(`\\w|${korean.source}|${japanese.source}`);
     const regex = new RegExp(
-      `(${wordRegex.source})+\\s:\\s(${wordRegex.source})+`,
+      `(${wordRegex.source})+\\s:\\s(${wordRegex.source})+(\\s(${wordRegex.source})+)*`,
       'g'
     );
     const chunks = INFORMATION[this.language].matchAll(regex);
