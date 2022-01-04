@@ -3,14 +3,14 @@ name: Tekken7 Movelist Deploy
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code.
-        uses: actions/checkout@master
+        uses: actions/checkout@main
       
       - name: Install dependencies
         uses: npm install
