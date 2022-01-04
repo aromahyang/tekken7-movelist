@@ -11,19 +11,3 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-
-      - name: Install dependencies
-        uses: npm install
-
-      - name: Build
-        uses: npm run build
-
-      - name: Deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws s3 cp \
-            --recursive \
-            --region ap-northease-2 \
-            dist s3://tekken7.aromahyang.com
