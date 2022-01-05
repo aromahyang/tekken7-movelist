@@ -33,7 +33,7 @@ class Command {
           </div>
           <div class="move-card-hit-info__damage">
             <span class="move-card-hit-info__sum">
-              ${damage.sum}
+              ${damage.sum}${damage.extra ? '+α' : ''}
             </span>
             ${
               damage.exp

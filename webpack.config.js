@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/scripts.js',
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -31,7 +31,10 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html', favicon: './src/assets/images/favicon.ico' }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      favicon: './src/assets/images/favicon.ico',
+    }),
     new MiniCssExtractPlugin(),
   ],
 };

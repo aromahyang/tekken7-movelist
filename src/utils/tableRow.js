@@ -117,8 +117,13 @@ export function getHitLevel(list) {
         break;
       }
 
+      case 'P': {
+        level[0] = 'PARRY';
+        break;
+      }
+
       default: {
-        level[0] = '';
+        level[0] = '-';
       }
     }
     return level;
@@ -128,19 +133,29 @@ export function getHitLevel(list) {
 export function getDamage(list) {
   const sum = list.reduce((prev, curr) => {
     const parenthesisIndex = curr.indexOf('(');
-    const target =
+    const numString =
       parenthesisIndex < 0 ? curr : curr.slice(0, parenthesisIndex);
-    const xIndex = target.indexOf('x');
-    if (xIndex < 0) {
-      return prev + +target;
+    const xIndex = numString.indexOf('x');
+    if (xIndex > -1) {
+      const num1 = numString.slice(0, xIndex);
+      const num2 = numString.slice(xIndex + 1);
+      return prev + +num1 * +num2;
     }
 
-    const num1 = target.slice(0, xIndex);
-    const num2 = target.slice(xIndex + 1);
-    return prev + +num1 * +num2;
+    const alphaIndex = numString.indexOf('+α');
+    if (alphaIndex > -1) {
+      const defaultDamage = numString.slice(0, alphaIndex);
+      return prev + +defaultDamage;
+    }
+
+    return prev + +numString;
   }, 0);
 
-  return { sum: list.length === 1 && list[0] === '-' ? '-' : sum, exp: list.length ? list.join('+') : '' };
+  return {
+    sum: list.length === 1 && list[0] === '-' ? '-' : sum,
+    exp: list.length > 1 ? list.join('+') : '',
+    extra: list.join('').includes('+α'),
+  };
 }
 
 export function getStartFrame(frame) {

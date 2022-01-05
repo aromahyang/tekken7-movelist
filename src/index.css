@@ -637,6 +637,10 @@ button {
   color: #0cc;
 }
 
+.move-card-hit-info__level--parry {
+  color: #ad85ee;
+}
+
 .move-card-hit-info__level::after {
   content: '';
   width: 2px;
