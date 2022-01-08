@@ -142,7 +142,7 @@ export function getDamage(list) {
       return prev + +num1 * +num2;
     }
 
-    const alphaIndex = numString.indexOf('+α');
+    const alphaIndex = numString.indexOf('+'); // +α
     if (alphaIndex > -1) {
       const defaultDamage = numString.slice(0, alphaIndex);
       return prev + +defaultDamage;
