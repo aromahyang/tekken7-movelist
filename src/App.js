@@ -25,6 +25,7 @@ class App {
 
     this.$charContainer = document.querySelector('.character-container');
     this.$tbodyOfCharacters = document.querySelector('.character-content');
+    this.$wrapperOfMovelist = document.querySelector('.move-table-wrapper');
     this.$tbodyOfMovelist = document.querySelector('.move-table > tbody');
     this.$langSelect = document.querySelector('.movelist-header__select');
     this.$infoButton = document.querySelector('.information-button');
@@ -77,6 +78,7 @@ class App {
       this.charIndex = +character;
       saveCookie(CHARACTER_INDEX_COOKIE, character);
       this.render();
+      this.$wrapperOfMovelist.scroll({ top: 0, behavior: 'smooth' });
       this.charMenuOpen = false;
       if (window.innerWidth <= 800) {
         this.$charContainer.style.display = 'none';
@@ -118,9 +120,7 @@ class App {
 
     const $scrollTopButton = document.querySelector('.scroll-top-button');
     $scrollTopButton.addEventListener('click', () => {
-      document
-        .querySelector('.move-table-wrapper')
-        .scroll({ top: 0, behavior: 'smooth' });
+      this.$wrapperOfMovelist.scroll({ top: 0, behavior: 'smooth' });
     });
   }
 

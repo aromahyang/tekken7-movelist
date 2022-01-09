@@ -1,35 +1,48 @@
 /* utils for table row */
-import { DIRECTIONS, BUTTONS, EXTRA_COMMAND } from './commands';
+import {
+  DIRECTIONS,
+  DIRECTIONS_EN,
+  BUTTONS,
+  EXTRA_COMMAND,
+} from './commands';
 
 function getCmdImgFromEng(command) {
-  // const indexOfParenthesis = command.indexOf(')');
-  // command =
-  //   indexOfParenthesis < 0 || indexOfParenthesis === command.length - 1
-  //     ? command
-  //     : command.slice(0, indexOfParenthesis + 1) +
-  //       ' ' +
-  //       command.slice(indexOfParenthesis + 1);
-  // const chunks = command.split(' ');
-  // const indexOfComma = chunks.findIndex((item) => item.includes(','));
-  // const items = chunks.map((item, i) => {
-  //   const result = { text: item };
-  //   if (item.includes(',')) {
-  //     result.prev = false;
-  //     result.command = true;
-  //     result.value = item.split(',');
-  //   } else {
-  //     result.prev = i < indexOfComma;
-  //     result.command = EXTRA_COMMAND.includes(item);
-  //     result.value = item;
-  //   }
-  //   return result;
-  // });
-  // console.log(items);
   return command;
 }
 
 function getCmdImgFromKr(command) {
-  return command;
+  const DIRECTION_REGEX = new RegExp(Object.keys(DIRECTIONS).join('|'));
+  const BUTTONS_REGEX = new RegExp(Object.keys(BUTTONS).join('|'));
+  const COMMAND_REGEX = new RegExp(
+    `(${BUTTONS_REGEX.source}|${DIRECTION_REGEX.source})`,
+    'g'
+  );
+  const chunks = command.split(' ').map((chunk) => chunk.split(COMMAND_REGEX)).flat();
+  const newChunks = chunks.reduce((arr, cur, i) => {
+    if (!cur) {
+      return arr;
+    }
+    if (cur === '~') {
+      arr[arr.length - 1] = arr[arr.length - 1] + cur;
+    } else if (cur == '+') {
+      arr[arr.length - 1] = arr[arr.length - 1] + cur + chunks[i + 1];
+    } else {
+      if (i > 0 && chunks[i - 1] === '+') {
+        return arr;
+      }
+      arr.push(cur);
+    }
+    return arr;
+  }, []);
+  return newChunks.map((str) => {
+    if (DIRECTIONS[str]) {
+      return { arrow: true, button: false, src: DIRECTIONS[str] };
+    }
+    if (BUTTONS[str]) {
+      return { arrow: false, button: true, src: BUTTONS[str] };
+    }
+    return { arrow: false, button: false, src: str };
+  });
 }
 
 function getCmdImgFromJp(command) {

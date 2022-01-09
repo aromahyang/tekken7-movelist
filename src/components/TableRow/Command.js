@@ -1,4 +1,6 @@
-import { getCommand, getDamage, getHitLevel } from '../../utils/tableRow';
+import ARROW_SVG from '~/assets/images/arrows';
+import BUTTON_SVG from '~/assets/images/buttons';
+import { getCommand, getDamage, getHitLevel } from '~/utils/tableRow';
 
 class Command {
   constructor(props) {
@@ -12,11 +14,21 @@ class Command {
     return `
       <div class="move-card-content">
         <div class="move-card-command">
-          ${getCommand(language, command)}
+          ${
+            language == 'kr'
+              ? getCommand(language, command).map(({ arrow, button, src }) =>
+                arrow | button
+                  ? `<img src="${arrow ? ARROW_SVG[src] : BUTTON_SVG[src]}" class="move-card-command__${arrow ? 'arrow' : 'button'}" />`
+                  : `${src}`
+                )
+                .join('')
+              : getCommand(language, command)
+          }
         </div>
         <div class="move-card-hit-info">
           <div class="move-card-hit-info__level">
-            ${hitLevel.map((level, i) => `
+            ${hitLevel
+              .map((level, i) => `
               ${level
                 .map((l) => `
                   <p class="move-card-hit-info__level--${l.toLowerCase()}">
@@ -24,12 +36,14 @@ class Command {
                   </p>
                 `)
                 .join('<p>/</p>')}
-              ${i < hitLevel.length - 1
-                ? `
-                  <i class="fas fa-chevron-right"></i>
-                `
-                : ''}
-            `).join('')}
+              ${
+                i < hitLevel.length - 1
+                  ? `<i class="fas fa-chevron-right"></i>`
+                  : ''
+              }
+            `
+              )
+              .join('')}
           </div>
           <div class="move-card-hit-info__damage">
             <span class="move-card-hit-info__sum">
@@ -38,9 +52,9 @@ class Command {
             ${
               damage.exp
                 ? `
-              <span class="move-card-hit-info__expression">
-                (${damage.exp})
-              </span>
+                  <span class="move-card-hit-info__expression">
+                    (${damage.exp})
+                  </span>
                   `
                 : ''
             }

@@ -1,1 +1,1 @@
-export const LANGUAGE_LIST = ['en', 'kr', 'jp'];
+export const LANGUAGE_LIST = ['kr', 'en', 'jp'];
