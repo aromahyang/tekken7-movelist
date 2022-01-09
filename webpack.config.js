@@ -4,6 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
+  stats: {
+    warnings: false,
+  },
   entry: './src/scripts.js',
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -25,7 +28,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
-        test: /\.(png|jpe?g)$/i,
+        test: /\.(png|jpe?g|svg)$/i,
         use: [{ loader: 'file-loader' }],
       },
     ],
