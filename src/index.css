@@ -583,6 +583,7 @@ button {
   width: 100%;
   overflow-x: auto;
   padding: 9px 0; /* 커맨드 이미지 작업 전 임시 패딩 추가 */
+  word-break: keep-all;
 }
 
 .move-card-command__prev {
