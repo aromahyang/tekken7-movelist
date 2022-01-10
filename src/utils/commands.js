@@ -29,14 +29,14 @@ export const COMMAND_EN = {
   'u/b': '7',
   'u': '8',
   'u/f': '9',
-  '+': 'hold', // TODO: 1hold
+  // '+': 'hold', // TODO: 1hold
   '+d': '2hold',
   'd/f+': '3hold',
   'b+': '4hold',
   'f+': '6hold',
-  '+': 'hold', // TODO
+  // '+': 'hold', // TODO: 7hold
   '+u': '8hold',
-  '+': 'hold', // 9TODO
+  // '+': 'hold', // TODO: 9hold
 };
 
 export const BUTTONS = {
@@ -55,6 +55,8 @@ export const BUTTONS = {
   'LP+AK': 'lp+ak', // 1+3+4
   'RP+AK': 'rp+ak', // 2+3+4
   'AP+AK': 'ap+ak', // 1+2+3+4
+  '[': 'bracketL',
+  ']': 'bracketR',
 };
 
 export const SPECIAL_MOVE = {

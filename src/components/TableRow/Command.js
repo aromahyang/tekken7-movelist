@@ -15,7 +15,7 @@ class Command {
       <div class="move-card-content">
         <div class="move-card-command">
           ${
-            language == 'kr'
+            language !== 'en'
               ? getCommand(language, command).map(({ arrow, button, src }) =>
                 arrow | button
                   ? `<img src="${arrow ? ARROW_SVG[src] : BUTTON_SVG[src]}" class="move-card-command__${arrow ? 'arrow' : 'button'}" />`

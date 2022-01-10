@@ -10,7 +10,7 @@ function getCmdImgFromEng(command) {
   return command;
 }
 
-function getCmdImgFromKr(command) {
+function getCmdImg(command) {
   const DIRECTION_REGEX = new RegExp(Object.keys(DIRECTIONS).join('|'));
   const BUTTONS_REGEX = new RegExp(Object.keys(BUTTONS).join('|'));
   const COMMAND_REGEX = new RegExp(
@@ -45,17 +45,11 @@ function getCmdImgFromKr(command) {
   });
 }
 
-function getCmdImgFromJp(command) {
-  return command;
-}
-
 export function getCommand(language, command) {
-  if (language === 'en') {
-    return getCmdImgFromEng(command);
-  } else if (language === 'kr') {
-    return getCmdImgFromKr(command);
+  if (language !== 'en') {
+    return getCmdImg(command);
   } else {
-    return getCmdImgFromJp(command);
+    return getCmdImgFromEng(command);
   }
 }
 
