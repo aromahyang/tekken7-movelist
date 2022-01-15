@@ -79,6 +79,12 @@ export function getHitLevel(list) {
         break;
       }
 
+      case 'HH': {
+        level[0] = 'HIGH';
+        level[1] = 'HIGH';
+        break;
+      }
+
       case 'MH': {
         level[0] = 'MID';
         level[1] = 'HIGH';
