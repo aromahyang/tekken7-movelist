@@ -59,6 +59,119 @@ export const BUTTONS = {
   ']': 'bracketR',
 };
 
-export const SPECIAL_MOVE = {
-  'DF': 'Destructive Form', // Alisa
+export const PREV_MOVE = {
+  wc: 'While crouching',
+  'Durint sit': 'While crounching', // 아마 오타인 듯
+};
+
+export const SPECIAL_MOVE_KR = {
+  King: {},
+  Kuma: {
+    'HS': '헌팅스타일',
+  },
+  Lars: {
+    'DE': '다이나믹엔트리',
+    'SE': '사일런트엔트리',
+  },
+  Law: {
+    'CD': '차지드래곤',
+    'FS': '페이크스탭',
+  },
+  Lee: {
+    'HMS': '히트맨스타일',
+    'MS': '미스트스탭',
+    'SW': '스웨이',
+  },
+};
+
+export const SPECIAL_MOVE_JP = {
+  King: {
+    'CBB': 'キャノンボールバスター',
+    'CHFL': 'チキンウイングフェイスロック',
+    'JS': 'ジャーマン スープレックス',
+    'RACS': 'リバースゴリースペシャルボム',
+    'SAH': 'スタンディングアキレスホールド',
+  },
+  Kuma: {
+    'HS': 'ハンティング スタイル',
+  },
+  Lars: {
+    'DE': 'ダイナミックエントリ',
+    'SE': 'サイレントエントリ',
+  },
+  Law: {
+    'CD': 'チャージドラゴン',
+    'FS': 'フェイクステップ',
+  },
+  Lee: {
+    'HMS': 'ヒットマンスタイル',
+    'MS': 'ミストステップ',
+    'SW': 'スウェー',
+  },
+};
+
+export const SPECIAL_MOVE_EN = {
+  Alisa: {
+    'DF': 'Destructive Form',
+  },
+  Kunimitsu: {
+    'BT': 'Back Turn', // 확인 필요, (or Disengage)
+  },
+  Josie: {
+    'SS': 'Switch Stance',
+    'SB': 'Sway Back',
+  },
+  Julia: {
+    'WB': 'Wind Roll',
+  },
+  Kazumi: {
+    'FW': 'Fearless Warrior',
+  },
+  Kazuya: {
+    'DT': 'Devil Transformation',
+  },
+  King: {
+    'AB': 'Arm Breaker',
+    'CB': 'Cannonball Buster',
+    'CC': 'Cobra Clutch',
+    'CT': 'Cobra Twist',
+    'JS': 'Jaguar Step',
+    'MD': 'Manhattan Drop',
+    'PB': 'Power Bomb',
+    'RAS': 'Reverse Arm Slam',
+    'RDDT': 'Reverse DDT',
+    'RSSB': 'Reverse Special Stretch Bomb',
+    'SHH': 'Standing Heel Hold',
+    'VB': 'Victory Bomb',
+  },
+  Kuma: {
+    'FR': 'Forward Roll',
+  },
+  Lars: {
+    'DE': 'Dynamic Entry',
+    'SE': 'Silent Entry',
+  },
+  Law: {
+    'DC': 'Dragon Charge',
+    'FS': 'Fake Step',
+  },
+  Lee: {
+    'HM': 'Hitman',
+    'MS': 'Mist Step',
+    'SW': 'Sway',
+  },
+  Lei: {
+    'DMW': 'Drunken Master Walk',
+    'PI': 'Phoenix Illusion',
+    'SW': 'Sidewind',
+    'BT': 'Back Turn',
+  },
+  Leroy: {
+    'HM': 'Hermit',
+  },
+  Lucky: {
+    'BT': 'Back Turn',
+    'LT': 'Left Twist',
+    'SC': 'Scoot',
+  },
 };
