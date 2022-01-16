@@ -71,7 +71,7 @@ class App {
       }
 
       const { character } = target.dataset;
-      if (+character === 43) {
+      if (+character === 44) {
         alert(`Sorry. No data for Panda`);
         return;
       }
