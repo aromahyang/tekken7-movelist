@@ -85,6 +85,18 @@ export function getHitLevel(list) {
         break;
       }
 
+      case 'HM': {
+        level[0] = 'HIGH';
+        level[1] = 'MID';
+        break;
+      }
+
+      case 'HL': {
+        level[0] = 'HIGH';
+        level[1] = 'LOW';
+        break;
+      }
+
       case 'MH': {
         level[0] = 'MID';
         level[1] = 'HIGH';
@@ -111,6 +123,12 @@ export function getHitLevel(list) {
       case 'LH': {
         level[0] = 'LOW';
         level[1] = 'HIGH';
+        break;
+      }
+
+      case 'LM': {
+        level[0] = 'LOW';
+        level[1] = 'MID';
         break;
       }
 

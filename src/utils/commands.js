@@ -60,7 +60,7 @@ export const BUTTONS = {
 };
 
 export const PREV_MOVE = {
-  wc: 'While crouching',
+  'wc': 'While crouching',
   'Durint sit': 'While crounching', // 아마 오타인 듯
 };
 
@@ -81,6 +81,26 @@ export const SPECIAL_MOVE_KR = {
     'HMS': '히트맨스타일',
     'MS': '미스트스탭',
     'SW': '스웨이',
+  },
+  Marduk: {
+    'CS': '크라우칭스타일',
+  },
+  MasterRaven: {
+    'HF': '헤이즈필드',
+  },
+  Miguel: {
+    'SS': '새비지스탠스',
+  },
+  Negan: {
+    'ITM': '인티미데이션',
+  },
+  Shaheen: {
+    'SI': '스네이크인',
+  },
+  Zafina: {
+    'MT': '모드타란튤라',
+    'MSC': '모드스케어크로우',
+    'MM': '모드맨티스',
   },
 };
 
@@ -107,6 +127,27 @@ export const SPECIAL_MOVE_JP = {
     'HMS': 'ヒットマンスタイル',
     'MS': 'ミストステップ',
     'SW': 'スウェー',
+  },
+  Marduk: {
+    'CS': 'クラウチングスタイル',
+    'MP': 'マウントポジション',
+  },
+  MasterRaven: {
+    'HF': 'ヘイズフィールド',
+  },
+  Miguel: {
+    'SS': 'サヴェッジスタンス',
+  },
+  Negan: {
+    'ITM': 'インティミデーション',
+  },
+  Shaheen: {
+    'SI': 'スネークイン',
+  },
+  Zafina: {
+    'MT': 'モードタランチュラ',
+    'MSC': 'モードスゲアクロウ',
+    'MM': 'モードマンティス',
   },
 };
 
@@ -173,5 +214,32 @@ export const SPECIAL_MOVE_EN = {
     'BT': 'Back Turn',
     'LT': 'Left Twist',
     'SC': 'Scoot',
+  },
+  MasterRaven: {
+    'HZ': 'Haze',
+    'BT': 'Back Turn',
+  },
+  Miguel: {
+    'SS': 'Savage Stance',
+  },
+  Negan: {
+    'Int': 'Intimidation',
+  },
+  Shaheen: {
+    'SS': 'Stealth Step',
+  },
+  Xiaoyu: {
+    'BT': 'Back Turn',
+    'PX': 'Phoenix',
+  },
+  Yoshimitsu: {
+    'BT': 'Back Turn',
+    'MD': 'Manji Dragonfly',
+    'MnK': 'Mutou no Kiwami',
+  },
+  Zafina: {
+    'TS': 'Tarantulra Stance',
+    'SS': 'Scarecrow stance',
+    'MS': 'Mantis stance',
   },
 };
