@@ -1,31 +1,124 @@
 /* utils for table row */
-import {
-  DIRECTIONS,
-  DIRECTIONS_EN,
-  BUTTONS,
-  EXTRA_COMMAND,
-} from './commands';
+import { DIRECTIONS, DIRECTIONS_EN, BUTTONS, BUTTONS_EN } from './commands';
 
 function getCmdImgFromEng(command) {
-  return command;
-}
-
-function getCmdImg(command) {
-  const DIRECTION_REGEX = new RegExp(Object.keys(DIRECTIONS).join('|'));
-  const BUTTONS_REGEX = new RegExp(Object.keys(BUTTONS).join('|'));
+  const DIRECTION_REGEX = new RegExp(
+    Object.keys(DIRECTIONS_EN)
+      .map((dir) => (dir.includes('+') ? dir.replace('+', '\\+') : dir))
+      .join('|')
+  );
+  const BUTTONS_REGEX = new RegExp(
+    Object.keys(BUTTONS_EN)
+      .map((btn) =>
+        btn !== '[' && btn !== ']'
+          ? btn.includes('+')
+            ? btn.replaceAll('+', '\\+')
+            : btn
+          : `\\${btn}`
+      )
+      .join('|')
+  );
   const COMMAND_REGEX = new RegExp(
     `(${BUTTONS_REGEX.source}|${DIRECTION_REGEX.source})`,
     'g'
   );
-  const chunks = command.split(' ').map((chunk) => chunk.split(COMMAND_REGEX)).flat();
+  const openParenthesisIndex = command.indexOf('(');
+  const closeParenthesisIndex = command.indexOf(')');
+  const customCommand =
+    openParenthesisIndex < 0
+      ? command
+      : command.slice(0, openParenthesisIndex) +
+        ' ' +
+        command.slice(openParenthesisIndex, closeParenthesisIndex + 1) +
+        ' ' +
+        command.slice(closeParenthesisIndex + 1);
+  const chunks = customCommand.split(' ').reduce((arr, cur) => {
+    if (
+      /^\(*[a-zA-Z]+\)*$/.test(cur) &&
+      !new RegExp(`^[${Object.keys(DIRECTIONS_EN).join('')}]+$`).test(cur)
+    ) {
+      // check whether current chunk contains only characters and is composed with only direction commands
+      arr.push({ arrow: false, button: false, src: cur });
+    } else {
+      const newChunks = cur.split(COMMAND_REGEX).filter((item) => !!item);
+      const temp = [];
+      newChunks.forEach((item, index) => {
+        if (item === '+') {
+          temp[temp.length - 1] = {
+            ...temp[temp.length - 1],
+            cmd: temp[temp.length - 1].cmd + item + newChunks[index + 1],
+            src: BUTTONS_EN[
+              temp[temp.length - 1].cmd + item + newChunks[index + 1]
+            ],
+          };
+        } else {
+          if (index > 0 && newChunks[index - 1] === '+') {
+          } else {
+            if (DIRECTIONS_EN[item]) {
+              if (typeof DIRECTIONS_EN[item] === 'string') {
+                temp.push({
+                  cmd: item,
+                  arrow: true,
+                  button: false,
+                  src: DIRECTIONS_EN[item],
+                });
+              } else {
+                DIRECTIONS_EN[item].forEach((dir) => {
+                  temp.push({
+                    cmd: dir,
+                    arrow: true,
+                    button: false,
+                    src: DIRECTIONS_EN[dir],
+                  });
+                });
+              }
+            } else if (BUTTONS_EN[item]) {
+              temp.push({
+                cmd: item,
+                arrow: false,
+                button: true,
+                src: BUTTONS_EN[item],
+              });
+            } else {
+              temp.push({ cmd: item, arrow: false, button: false, src: item });
+            }
+          }
+        }
+      });
+      arr = arr.concat(temp);
+    }
+    return arr;
+  }, []);
+  return chunks;
+}
+
+function getCmdImg(command) {
+  const DIRECTION_REGEX = new RegExp(Object.keys(DIRECTIONS).join('|'));
+  const BUTTONS_REGEX = new RegExp(
+    Object.keys(BUTTONS)
+      .map((btn) => (btn !== '[' && btn !== ']' ? btn : `\\${btn}`))
+      .join('|')
+  );
+  const COMMAND_REGEX = new RegExp(
+    `(${BUTTONS_REGEX.source}|${DIRECTION_REGEX.source})`,
+    'g'
+  );
+  const chunks = command
+    .split(' ')
+    .map((chunk) => chunk.split(COMMAND_REGEX))
+    .flat();
+  if (command === '→LK,AP') {
+    console.log(chunks);
+  }
   const newChunks = chunks.reduce((arr, cur, i) => {
     if (!cur) {
       return arr;
     }
     if (cur === '~') {
       arr[arr.length - 1] = arr[arr.length - 1] + cur;
-    } else if (cur == '+') {
+    } else if (cur === '+') {
       arr[arr.length - 1] = arr[arr.length - 1] + cur + chunks[i + 1];
+    } else if (cur === ',') {
     } else {
       if (i > 0 && chunks[i - 1] === '+') {
         return arr;

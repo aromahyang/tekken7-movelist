@@ -14,27 +14,31 @@ class Command {
     return `
       <div class="move-card-content">
         <div class="move-card-command">
-          ${
-            language !== 'en'
-              ? getCommand(language, command).map(({ arrow, button, src }) =>
-                arrow | button
-                  ? `<img src="${arrow ? ARROW_SVG[src] : BUTTON_SVG[src]}" class="move-card-command__${arrow ? 'arrow' : 'button'}" />`
-                  : `${src}`
-                )
-                .join('')
-              : getCommand(language, command)
-          }
+          ${getCommand(language, command)
+            .map(({ arrow, button, src }) =>
+              arrow | button
+                ? `<img src="${
+                    arrow ? ARROW_SVG[src] : BUTTON_SVG[src]
+                  }" class="move-card-command__${
+                    arrow ? 'arrow' : 'button'
+                  }" />`
+                : `${src} `
+            )
+            .join('')}
         </div>
         <div class="move-card-hit-info">
           <div class="move-card-hit-info__level">
             ${hitLevel
-              .map((level, i) => `
+              .map(
+                (level, i) => `
               ${level
-                .map((l) => `
+                .map(
+                  (l) => `
                   <p class="move-card-hit-info__level--${l.toLowerCase()}">
                     ${l}
                   </p>
-                `)
+                `
+                )
                 .join('<p>/</p>')}
               ${
                 i < hitLevel.length - 1
