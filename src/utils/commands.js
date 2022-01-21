@@ -20,21 +20,24 @@ export const DIRECTIONS = {
 
 export const DIRECTIONS_EN = {
   'd/b': '1',
-  'd/f': '3',
+  'd/f': '3', 
   'u/b': '7',
   'u/f': '9',
-  // '+': 'hold', // TODO: 1hold
+  'd/b+': '1hold',
+  '+d/b': '1hold',
   '+d': '2hold',
   'd+': '2hold',
   'd/f+': '3hold',
+  '+d/f': '3hold',
   'b+': '4hold',
   '+b': '4hold',
   'f+': '6hold',
   '+f': '6hold',
-  // '+': 'hold', // TODO: 7hold
+  'u/b+': '7hold',
   '+u': '8hold',
   'u+': '8hold',
-  // '+': 'hold', // TODO: 9hold,
+  'u/f+': '9hold',
+  '+u/f': '9hold',
   'd': '2',
   'b': '4',
   'n': 'n',

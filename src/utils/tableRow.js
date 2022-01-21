@@ -44,15 +44,34 @@ function getCmdImgFromEng(command) {
       const temp = [];
       newChunks.forEach((item, index) => {
         if (item === '+') {
+          const lastItem = temp[temp.length - 1];
+          if (lastItem.arrow) {
+            temp[temp.length - 1] = {
+              ...lastItem,
+              cmd: lastItem.cmd + item,
+              src: DIRECTIONS_EN[lastItem.cmd + item],
+            };
+          } else {
+            temp[temp.length - 1] = {
+              ...lastItem,
+              cmd: lastItem.cmd + item + newChunks[index + 1],
+              src: BUTTONS_EN[lastItem.cmd + item + newChunks[index + 1]],
+            };
+          }
+        } else if (item === '/') {
           temp[temp.length - 1] = {
             ...temp[temp.length - 1],
             cmd: temp[temp.length - 1].cmd + item + newChunks[index + 1],
-            src: BUTTONS_EN[
+            src: DIRECTIONS_EN[
               temp[temp.length - 1].cmd + item + newChunks[index + 1]
             ],
           };
         } else {
-          if (index > 0 && newChunks[index - 1] === '+') {
+          if (
+            index > 0 &&
+            ((newChunks[index - 1] === '+' && !temp[temp.length - 1].arrow) ||
+              newChunks[index - 1] === '/')
+          ) {
           } else {
             if (DIRECTIONS_EN[item]) {
               if (typeof DIRECTIONS_EN[item] === 'string') {
@@ -107,9 +126,6 @@ function getCmdImg(command) {
     .split(' ')
     .map((chunk) => chunk.split(COMMAND_REGEX))
     .flat();
-  if (command === '→LK,AP') {
-    console.log(chunks);
-  }
   const newChunks = chunks.reduce((arr, cur, i) => {
     if (!cur) {
       return arr;
