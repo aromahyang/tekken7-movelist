@@ -22,7 +22,7 @@ class Command {
                   }" class="move-card-command__${
                     arrow ? 'arrow' : 'button'
                   }" />`
-                : `${src} `
+                : `<span>${src}</span> `
             )
             .join('')}
         </div>
