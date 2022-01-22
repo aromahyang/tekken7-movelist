@@ -9,6 +9,21 @@ body {
   background-attachment: fixed;
 }
 
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(12,73,90,.75);
+  border-radius: 2px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,.1);
+  border: 1px solid rgba(12,73,90,.75);
+  border-radius: 2px;
+}
+
 p,
 h3 {
   margin: 0;
@@ -148,21 +163,6 @@ button {
 
 .character-content {
   overflow-y: auto;
-}
-
-.character-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.character-content::-webkit-scrollbar-thumb {
-  background-color: rgba(12,73,90,.75);
-  border-radius: 2px;
-}
-
-.character-content::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,.1);
-  border: 1px solid rgba(12,73,90,.75);
-  border-radius: 2px;
 }
 
 .character-table {
@@ -446,21 +446,6 @@ button {
   overflow-y: auto;
 }
 
-.move-table-wrapper::-webkit-scrollbar {
-  width: 8px;
-}
-
-.move-table-wrapper::-webkit-scrollbar-thumb {
-  background-color: rgba(12,73,90,.75);
-  border-radius: 2px;
-}
-
-.move-table-wrapper::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,.1);
-  border: 1px solid rgba(12,73,90,.75);
-  border-radius: 2px;
-}
-
 .move-table {
   width: 100%;
   table-layout: fixed;
@@ -582,11 +567,12 @@ button {
   align-items: center;
   width: 100%;
   overflow-x: auto;
-  padding: 9px 0; /* 커맨드 이미지 작업 전 임시 패딩 추가 */
-  word-break: keep-all;
+  padding: 8px 0;
 }
 
-.move-card-command__prev {
+.move-card-command > span {
+  word-break: keep-all;
+  white-space: nowrap;
   margin-right: 4px;
 }
 
@@ -604,9 +590,20 @@ button {
   }
 }
 
-.move-card-command__hint {
-  margin: 0;
-  margin-right: 5px;
+.move-card-command::-webkit-scrollbar {
+  width: unset;
+  height: 8px;
+}
+
+.move-card-command::-webkit-scrollbar-thumb {
+  background-color: rgba(12,73,90,.75);
+  border-radius: 2px;
+}
+
+.move-card-command::-webkit-scrollbar-track {
+  background-color: rgba(0,0,0,.1);
+  border: 1px solid rgba(12,73,90,.75);
+  border-radius: 2px;
 }
 
 .move-card-hit-info {
