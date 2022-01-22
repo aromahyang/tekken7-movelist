@@ -71,10 +71,6 @@ class App {
       }
 
       const { character } = target.dataset;
-      if (+character === 44) {
-        alert(`Sorry. No data for Panda`);
-        return;
-      }
       this.charIndex = +character;
       saveCookie(CHARACTER_INDEX_COOKIE, character);
       this.render();
