@@ -168,10 +168,9 @@ export function getHitLevel(list) {
     const target = item.length > 2 ? item[0] : item;
     switch (target) {
       case 'H':
-      case 'HP':
       case 'HT':
       case 'AT': {
-        // HP: High Parrying, HT: High Throw, AT: Aerial Throw
+        // HT: High Throw, AT: Aerial Throw
         level[0] = 'HIGH';
         break;
       }
@@ -257,7 +256,9 @@ export function getHitLevel(list) {
         break;
       }
 
-      case 'P': {
+      case 'P':
+      case 'HP': {
+        // HP: High Parrying
         level[0] = 'PARRY';
         break;
       }
