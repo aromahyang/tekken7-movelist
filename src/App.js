@@ -10,6 +10,7 @@ import {
   getCookie,
   saveCookie
 } from './utils/cookies';
+import smoothScrollTop from './utils/scroll';
 import './index.css';
 import './tooltip.css';
 
@@ -36,7 +37,14 @@ class App {
     this.render();
   }
 
+  trickHeight() {
+    // trick for height of mobile
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+
   mounted() {
+    this.trickHeight();
     this.controlMap = controlJson;
     this.characters = characterJson;
     this.charIndex = getCookie(CHARACTER_INDEX_COOKIE) ?? 0;
@@ -51,6 +59,7 @@ class App {
 
   addEvent() {
     window.addEventListener('resize', () => {
+      this.trickHeight();
       if (window.innerWidth <= 800) {
         this.$charContainer.style.display = this.charMenuOpen
           ? 'flex'
@@ -74,7 +83,7 @@ class App {
       this.charIndex = +character;
       saveCookie(CHARACTER_INDEX_COOKIE, character);
       this.render();
-      this.$wrapperOfMovelist.scroll({ top: 0, behavior: 'smooth' });
+      smoothScrollTop(this.$wrapperOfMovelist);
       this.charMenuOpen = false;
       if (window.innerWidth <= 800) {
         this.$charContainer.style.display = 'none';
@@ -116,7 +125,7 @@ class App {
 
     const $scrollTopButton = document.querySelector('.scroll-top-button');
     $scrollTopButton.addEventListener('click', () => {
-      this.$wrapperOfMovelist.scroll({ top: 0, behavior: 'smooth' });
+      smoothScrollTop(this.$wrapperOfMovelist);
     });
   }
 
