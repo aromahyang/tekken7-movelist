@@ -2,6 +2,8 @@
 
 철권7의 기술 프레임표를 보여줍니다.
 
+[https://tekken7.aromahyang.com](https://tekken7.aromahyang.com)에서 확인할 수 있습니다.
+
 ### Reference
 
 [mspkvp의 tk7movespretty](https://github.com/mspkvp/tk7movespretty)
