@@ -169,8 +169,10 @@ export function getHitLevel(list) {
     switch (target) {
       case 'H':
       case 'HT':
-      case 'AT': {
+      case 'AT':
+      case 'S': {
         // HT: High Throw, AT: Aerial Throw
+        // S: 레이 예외처리
         level[0] = 'HIGH';
         break;
       }
