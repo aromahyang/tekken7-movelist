@@ -12,6 +12,5 @@
 
 ## TODO
 
-- [ ] 캐릭터 풀네임 가져오기
 - [ ] 기술명 및 커맨드 검색 기능
 - [ ] SSR(Server Side Rendering)
