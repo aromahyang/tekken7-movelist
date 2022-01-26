@@ -1,6 +1,7 @@
 body {
   width: 100%;
-  height: 100%;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
   margin: 0;
   background-image: url('./assets/images/background.jpg');
   background-position: right top;
@@ -112,7 +113,7 @@ button {
 
 .main-container {
   position: relative;
-  height: calc(100vh - 160px);
+  height: calc(100% - 160px);
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
@@ -132,8 +133,8 @@ button {
     flex-direction: column;
     -webkit-align-items: initial;
     align-items: initial;
-    height: calc(100vh - 120px);
-    max-height: 80vh;
+    height: calc(100% - 120px);
+    max-height: 80%;
   }
 }
 
@@ -763,4 +764,16 @@ button {
   .move-extra__wall-bound::before {
     content: 'WB';
   }
+}
+
+footer {
+  max-width: calc(200px + 14px + 970px);
+  padding: 8px 20px 0;
+}
+
+footer > p {
+  color: #9e9e9e;
+  text-align: right;
+  font-family: 'Core Sans G', Arial, sans-serif;
+  font-size: 12px;
 }
