@@ -2,7 +2,7 @@ import Header from './Header';
 import Command from './Command';
 import Extra from './Extra';
 import Frames from './Frames';
-import { LANGUAGE_LIST } from '../../utils/languages';
+import { LANGUAGE_LIST } from '~/utils/languages';
 
 class TableRow {
   constructor({ data, languageJson, langIndex }) {

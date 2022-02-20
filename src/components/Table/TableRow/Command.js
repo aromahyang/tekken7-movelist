@@ -15,13 +15,13 @@ class Command {
       <div class="move-card-content">
         <div class="move-card-command">
           ${getCommand(language, command)
-            .map(({ arrow, button, src }) =>
+            .map(({ arrow, button, src, value }) =>
               arrow | button
                 ? `<img src="${
                     arrow ? ARROW_SVG[src] : BUTTON_SVG[src]
                   }" class="move-card-command__${
                     arrow ? 'arrow' : 'button'
-                  }" />`
+                  }" alt="${value}" />`
                 : `<span>${src}</span> `
             )
             .join('')}

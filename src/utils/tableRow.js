@@ -48,22 +48,22 @@ function getCmdImgFromEng(command) {
           if (lastItem.arrow) {
             temp[temp.length - 1] = {
               ...lastItem,
-              cmd: lastItem.cmd + item,
-              src: DIRECTIONS_EN[lastItem.cmd + item],
+              value: lastItem.value + item,
+              src: DIRECTIONS_EN[lastItem.value + item],
             };
           } else {
             temp[temp.length - 1] = {
               ...lastItem,
-              cmd: lastItem.cmd + item + newChunks[index + 1],
-              src: BUTTONS_EN[lastItem.cmd + item + newChunks[index + 1]],
+              value: lastItem.value + item + newChunks[index + 1],
+              src: BUTTONS_EN[lastItem.value + item + newChunks[index + 1]],
             };
           }
         } else if (item === '/') {
           temp[temp.length - 1] = {
             ...temp[temp.length - 1],
-            cmd: temp[temp.length - 1].cmd + item + newChunks[index + 1],
+            value: temp[temp.length - 1].value + item + newChunks[index + 1],
             src: DIRECTIONS_EN[
-              temp[temp.length - 1].cmd + item + newChunks[index + 1]
+              temp[temp.length - 1].value + item + newChunks[index + 1]
             ],
           };
         } else {
@@ -76,7 +76,7 @@ function getCmdImgFromEng(command) {
             if (DIRECTIONS_EN[item]) {
               if (typeof DIRECTIONS_EN[item] === 'string') {
                 temp.push({
-                  cmd: item,
+                  value: item,
                   arrow: true,
                   button: false,
                   src: DIRECTIONS_EN[item],
@@ -84,7 +84,7 @@ function getCmdImgFromEng(command) {
               } else {
                 DIRECTIONS_EN[item].forEach((dir) => {
                   temp.push({
-                    cmd: dir,
+                    value: dir,
                     arrow: true,
                     button: false,
                     src: DIRECTIONS_EN[dir],
@@ -93,13 +93,18 @@ function getCmdImgFromEng(command) {
               }
             } else if (BUTTONS_EN[item]) {
               temp.push({
-                cmd: item,
+                value: item,
                 arrow: false,
                 button: true,
                 src: BUTTONS_EN[item],
               });
             } else {
-              temp.push({ cmd: item, arrow: false, button: false, src: item });
+              temp.push({
+                value: item,
+                arrow: false,
+                button: false,
+                src: item,
+              });
             }
           }
         }
@@ -145,12 +150,12 @@ function getCmdImg(command) {
   }, []);
   return newChunks.map((str) => {
     if (DIRECTIONS[str]) {
-      return { arrow: true, button: false, src: DIRECTIONS[str] };
+      return { arrow: true, button: false, src: DIRECTIONS[str], value: str };
     }
     if (BUTTONS[str]) {
-      return { arrow: false, button: true, src: BUTTONS[str] };
+      return { arrow: false, button: true, src: BUTTONS[str], value: str };
     }
-    return { arrow: false, button: false, src: str };
+    return { arrow: false, button: false, src: str, value: str };
   });
 }
 

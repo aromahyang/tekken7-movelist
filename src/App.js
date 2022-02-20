@@ -2,15 +2,21 @@ import characterJson from './assets/json/characters.json';
 import controlJson from './assets/json/controls.json';
 import languageJson from './assets/json/languages';
 import movelistJson from './assets/json/movelists';
-import { CharacterCard, Header, Information, Table } from './components';
-import bgImg from './assets/images/background.jpg';
+import {
+  CharacterCard,
+  Table,
+  InformationButton,
+  LanguageButton,
+} from './components';
+import { tooltipEvent } from './events';
 import {
   CHARACTER_INDEX_COOKIE,
   LANGUAGE_INDEX_COOKIE,
   getCookie,
-  saveCookie
+  setCookie,
 } from './utils/cookies';
 import smoothScrollTop from './utils/scroll';
+import { trickHeight } from './utils/deviceHeight';
 import './index.css';
 import './tooltip.css';
 
@@ -22,55 +28,67 @@ class App {
     this.charIndex = 0;
     this.langIndex = 0;
     this.charMenuOpen = false;
-    this.infoOpen = false;
+    this.tooltipOpen = [false, false, false]; // filter, information, language
 
     this.$charContainer = document.querySelector('.character-container');
     this.$tbodyOfCharacters = document.querySelector('.character-content');
     this.$wrapperOfMovelist = document.querySelector('.move-table-wrapper');
     this.$tbodyOfMovelist = document.querySelector('.move-table > tbody');
-    this.$langSelect = document.querySelector('.movelist-header__select');
-    this.$infoButton = document.querySelector('.information-button');
-    this.$tooltip = document.querySelector('.tooltip-container');
 
     this.mounted();
     this.addEvent();
     this.render();
   }
 
-  trickHeight() {
-    // trick for height of mobile
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
-
   mounted() {
-    this.trickHeight();
+    trickHeight();
+    if (navigator.language === 'ko') {
+      // change title by browser langauge
+      document.title = '철권7 프레임표';
+    }
     this.controlMap = controlJson;
     this.characters = characterJson;
     this.charIndex = getCookie(CHARACTER_INDEX_COOKIE) ?? 0;
     const current = this.characters[this.charIndex];
     this.langIndex = getCookie(LANGUAGE_INDEX_COOKIE) ?? 0;
-    this.$langSelect[this.langIndex].selected = true;
     this.language = languageJson[current.first_name];
-    
-    document.body.style.backgroundImage = `url(${bgImg})`;
-    new Header();
+    new InformationButton({
+      langIndex: this.langIndex,
+      onClick: () => {
+        window.dispatchEvent(tooltipEvent(1));
+        this.tooltipOpen[0] = false;
+        this.tooltipOpen[1] = !this.tooltipOpen[1];
+        this.tooltipOpen[2] = false;
+        return this.tooltipOpen[1];
+      },
+    });
+    new LanguageButton({
+      onClick: () => {
+        window.dispatchEvent(tooltipEvent(2));
+        this.tooltipOpen[0] = false;
+        this.tooltipOpen[1] = false;
+        this.tooltipOpen[2] = !this.tooltipOpen[2];
+        return this.tooltipOpen[2];
+      },
+    });
   }
 
   addEvent() {
     window.addEventListener('resize', () => {
-      this.trickHeight();
+      trickHeight();
       if (window.innerWidth <= 800) {
-        this.$charContainer.style.display = this.charMenuOpen
-          ? 'flex'
-          : 'none';
+        this.$charContainer.style.display = this.charMenuOpen ? 'flex' : 'none';
       } else {
         this.$charContainer.style.display = 'flex';
       }
       this.renderCharacterCards();
-      if (this.infoOpen) {
-        this.renderInformation();
-      }
+    });
+
+    window.addEventListener('languageChange', () => {
+      this.langIndex = getCookie(LANGUAGE_INDEX_COOKIE);
+      this.renderTable();
+      window.dispatchEvent(tooltipEvent(-1));
+      this.tooltipOpen = [false, false, false];
     });
 
     this.$tbodyOfCharacters.addEventListener('click', (e) => {
@@ -81,7 +99,7 @@ class App {
 
       const { character } = target.dataset;
       this.charIndex = +character;
-      saveCookie(CHARACTER_INDEX_COOKIE, character);
+      setCookie(CHARACTER_INDEX_COOKIE, character);
       this.render();
       smoothScrollTop(this.$wrapperOfMovelist);
       this.charMenuOpen = false;
@@ -102,25 +120,6 @@ class App {
     $closeButton.addEventListener('click', () => {
       this.charMenuOpen = false;
       this.$charContainer.style.display = 'none';
-    });
-
-    this.$langSelect.addEventListener('change', (e) => {
-      const { value } = e.target;
-      this.langIndex = +value;
-      saveCookie(LANGUAGE_INDEX_COOKIE, value);
-      this.renderTable();
-      if (this.infoOpen) {
-        this.renderInformation();
-      }
-    });
-
-    this.$infoButton.addEventListener('click', () => {
-      this.infoOpen = !this.infoOpen;
-      if (this.infoOpen) {
-        this.renderInformation();
-      } else {
-        this.$tooltip.style.display = 'none';
-      }
     });
 
     const $scrollTopButton = document.querySelector('.scroll-top-button');
@@ -151,10 +150,6 @@ class App {
       langIndex: this.langIndex,
       $target: this.$tbodyOfMovelist,
     });
-  }
-
-  renderInformation() {
-    new Information({ $button: this.$infoButton, $target: this.$tooltip, langIndex: this.langIndex });
   }
 
   render() {

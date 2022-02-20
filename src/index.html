@@ -2,13 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Tekken 7 Movelist</title>
+    <title>Tekken7 Movelist</title>
+    <meta name="title" content="Tekken7 Movelist" />
     <meta
       name="description"
-      content="Tekken7 Movelists. This shows commands and frame data of characters. It is good to learn game skills and knowledge for newbies."
+      content="Tekken7 Movelist. This shows commands and frame data of characters. It is good for newbies to learn game skills and knowledge."
     />
     <meta name="author" content="Aromahyang" />
-    <meta name="keywords" content="Tekken7,Tekken7 Movelist,Tekken7 Frame,철권7" />
+    <meta
+      name="keywords"
+      content="Tekken7, Tekken7 Movelist, Tekken7 Frame, Tekken7 commands, 철권7, 철권7 프레임표, 철권7 무브리스트, 철권7 커맨드, 鉄拳7, 鉄拳7の攻略・フレームデータ"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Tekken7 Movelist" />
+    <meta
+      property="og:description"
+      content="Tekken7 Movelists. This shows commands and frame data of characters."
+    />
+    <meta property="og:url" content="https://tekken7.movelist.xyz" />
     <meta name="robots" content="index,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -19,10 +30,18 @@
       referrerpolicy="no-referrer"
     />
   </head>
+
   <body>
-    <header class="header"></header>
-    <section class="main-container">
-      <div class="character-container">
+    <header class="header">
+      <img
+        class="header__image"
+        src="https://storage.googleapis.com/tekken7-movelist-assets/logo.png"
+        alt="Tekken7"
+      />
+      <h3 class="header__h3">MOVELIST</h3>
+    </header>
+    <main class="main-container">
+      <section class="character-container">
         <table class="character-table">
           <thead>
             <tr>
@@ -40,41 +59,39 @@
           </thead>
         </table>
         <div class="character-content"></div>
-      </div>
+      </section>
       <div class="tab-divider"></div>
-      <div class="movelist-container">
+      <section class="movelist-container">
         <div class="movelist-header">
           <div class="movelist-header__left">
             <button class="icon-button movelist-header__button">
               <i class="fas fa-bars"></i>
             </button>
-          </div>
-          <div class="movelist-header__center">
             <p class="movelist-header__name"></p>
-            <input disabled class="movelist-header__search" />
           </div>
           <div class="movelist-header__right">
-            <div class="movelist-header__language">
-              <select class="movelist-header__select">
-                <option class="movelist-header__option" value="0">
-                  한국어
-                </option>
-                <option class="movelist-header__option" value="1" selected>
-                  ENGLISH
-                </option>
-                <option class="movelist-header__option" value="2">
-                  日本語
-                </option>
-              </select>
-            </div>
-            <div class="helper-button-container">
-              <button class="icon-button information-button">
-                <i class="fas fa-info"></i>
-              </button>
-              <button class="icon-button scroll-top-button">
-                <i class="fas fa-angle-double-up"></i>
-              </button>
-            </div>
+            <button
+              class="filter-button"
+              aria-label="Filter move button"
+              disabled
+            >
+              FILTER
+            </button>
+            <button
+              class="icon-button information-button"
+              aria-label="Information"
+            >
+              <i class="fas fa-info"></i>
+            </button>
+            <button class="icon-button language-button" aria-label="Languages">
+              <i class="fas fa-globe"></i>
+            </button>
+            <button
+              class="icon-button scroll-top-button"
+              aria-label="Scroll top"
+            >
+              <i class="fas fa-angle-double-up"></i>
+            </button>
           </div>
         </div>
         <div class="move-table-wrapper">
@@ -82,11 +99,30 @@
             <tbody></tbody>
           </table>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
     <footer>
       <p>Contact: aromahyang.dev@gmail.com</p>
+      <div class="ad-container"></div>
     </footer>
-    <div class="tooltip-container"></div>
+    <div class="tooltip-container filter-tooltip-container">
+      <section class="tooltip-content filter-tooltip">
+        <div class="special-move-filter"></div>
+        <div class="move-extra-filter">
+          <label> <input type="checkbox" /> Homing Attack </label>
+          <label> <input type="checkbox" /> Power Crush </label>
+          <label> <input type="checkbox" /> Tail Spin </label>
+          <label> <input type="checkbox" /> Wall Bound </label>
+        </div>
+      </section>
+    </div>
+    <div class="tooltip-container information-tooltip-container"></div>
+    <div class="tooltip-container language-tooltip-container">
+      <section class="tooltip-content language-tooltip">
+        <label> <input type="radio" name="language" value="0" /> 한국어 </label>
+        <label> <input type="radio" name="language" value="1" /> English </label>
+        <label> <input type="radio" name="language" value="2" /> 日本語 </label>
+      </section>
+    </div>
   </body>
 </html>

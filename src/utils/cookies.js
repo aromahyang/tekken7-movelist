@@ -11,7 +11,7 @@ export function getCookie(name) {
   }
 }
 
-export function saveCookie(name, value) {
+export function setCookie(name, value) {
   const date = new Date();
   date.setMonth(date.getMonth() + 1);
   document.cookie = `${name}=${value}; expires=${date.toUTCString()}`;

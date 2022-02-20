@@ -1,4 +1,4 @@
-import thumbnails from '../assets/thumbnails';
+import thumbnails from '~/assets/thumbnails';
 
 class CharacterCard {
   constructor(props) {

@@ -1,4 +1,4 @@
-import { getFrame, getStartFrame } from '../../utils/tableRow';
+import { getFrame, getStartFrame } from '~/utils/tableRow';
 
 class Frames {
   constructor(props) {

@@ -11,10 +11,6 @@
 .tooltip-container {
   position: absolute;
   display: none;
-  min-width: 160px;
-  height: 50%;
-  min-height: 240px;
-  max-height: 480px;
   background-color: rgba(0, 0, 0, 1);
   border: 1px solid rgba(12, 73, 90, 0.75);
   border-radius: 4px;
@@ -45,7 +41,6 @@
 }
 
 .tooltip-content {
-  height: 100%;
   font-family: 'Core Sans G', Arial, sans-serif;
   font-size: 20px;
   overflow: auto;
@@ -68,10 +63,83 @@
 
 @media only screen and (max-width: 800px) {
   .tooltip-content {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
-.tooltip-content > p {
+.information-tooltip {
+  min-width: 160px;
+  height: 50%;
+  min-height: 240px;
+  max-height: 480px;
+}
+
+.language-tooltip {
+  display: flex;
+  flex-direction: column;
   padding: 4px 12px;
+}
+
+.information-tooltip > p {
+  padding: 4px 12px;
+}
+
+.language-tooltip > label {
+  padding: 4px 0;
+}
+
+/* checkbox */
+.tooltip-content input[type="checkbox"] {
+  display: none;
+}
+
+.tooltip-content label {
+  cursor: pointer;
+}
+
+.tooltip-content input[type="checkbox"] {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(12,73,90, 1);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* radio */
+.tooltip-content label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.tooltip-content input[type="radio"] {
+  appearance: none;
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  border: 2px solid rgba(12,73,90, 1);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.tooltip-content input[type="radio"]:checked {
+  appearance: none;
+  position: relative;
+}
+
+.tooltip-content input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  border: 2px solid rgba(12,73,90, 1);
+  border-radius: 100%;
+  background-color: rgba(12,73,90, 1);
 }
