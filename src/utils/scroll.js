@@ -22,7 +22,7 @@ function smoothVerticalScrolling($target, time, where) {
   }
 }
 
-function smoothScrollTop($target) {
+export function smoothScrollTop($target) {
   if (isSmoothScrollSupported()) {
     $target.scroll({ top: 0, behavior: 'smooth' });
   } else {
@@ -31,4 +31,17 @@ function smoothScrollTop($target) {
   }
 }
 
-export default smoothScrollTop;
+export function smoothScrollIntoView($target) {
+  if (isSmoothScrollSupported()) {
+    $target.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    // Safari
+    $target.scrollIntoView({ behavior: 'smooth' });
+    // let scrollTop = window.pageYOffset || $target.scrollTop;
+    // const finalOffset = $target.getBoundingClientRect().top + scrollTop;
+    // window.parent.scrollTo({
+    //   top: finalOffset,
+    //   behavior: 'smooth',
+    // });
+  }
+}

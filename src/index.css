@@ -12,18 +12,23 @@ body {
   overflow: auto;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(12, 73, 90, 0.75) rgba(0, 0, 0, 0.1);
+}
+
 *::-webkit-scrollbar {
   width: 8px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: rgba(12,73,90,.75);
+  background-color: rgba(12, 73, 90, 0.75);
   border-radius: 2px;
 }
 
 *::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,.1);
-  border: 1px solid rgba(12,73,90,.75);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(12, 73, 90, 0.75);
   border-radius: 2px;
 }
 
@@ -485,6 +490,8 @@ button {
   width: 100%;
   overflow-x: auto;
   padding: 8px 0;
+
+  scrollbar-width: thin;
 }
 
 .move-card-command > span {
@@ -520,13 +527,13 @@ button {
 }
 
 .move-card-command::-webkit-scrollbar-thumb {
-  background-color: rgba(12,73,90,.75);
+  background-color: rgba(12, 73, 90, 0.75);
   border-radius: 2px;
 }
 
 .move-card-command::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,.1);
-  border: 1px solid rgba(12,73,90,.75);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(12, 73, 90, 0.75);
   border-radius: 2px;
 }
 

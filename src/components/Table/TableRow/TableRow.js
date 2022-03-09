@@ -34,7 +34,7 @@ class TableRow {
 
     if (isSpecial) {
       return `
-        <td class="special-move-card-container">
+        <td class="special-move-card-container" data-special-move=${name}>
           <div class="move-card-header__index">${id + 1}</div>
           <p>${translatedName.slice(1, -1)}</p>
         </td>

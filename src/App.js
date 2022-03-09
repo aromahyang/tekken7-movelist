@@ -7,6 +7,7 @@ import {
   Table,
   InformationButton,
   LanguageButton,
+  FilterButton,
 } from './components';
 import { tooltipEvent } from './events';
 import {
@@ -15,7 +16,7 @@ import {
   getCookie,
   setCookie,
 } from './utils/cookies';
-import smoothScrollTop from './utils/scroll';
+import { smoothScrollTop } from './utils/scroll';
 import { trickHeight } from './utils/deviceHeight';
 import './index.css';
 import './tooltip.css';
@@ -28,12 +29,14 @@ class App {
     this.charIndex = 0;
     this.langIndex = 0;
     this.charMenuOpen = false;
-    this.tooltipOpen = [false, false, false]; // filter, information, language
 
     this.$charContainer = document.querySelector('.character-container');
     this.$tbodyOfCharacters = document.querySelector('.character-content');
     this.$wrapperOfMovelist = document.querySelector('.move-table-wrapper');
     this.$tbodyOfMovelist = document.querySelector('.move-table > tbody');
+
+    this.filterButton = null;
+    this.commandTable = null;
 
     this.mounted();
     this.addEvent();
@@ -52,23 +55,22 @@ class App {
     const current = this.characters[this.charIndex];
     this.langIndex = getCookie(LANGUAGE_INDEX_COOKIE) ?? 0;
     this.language = languageJson[current.first_name];
+    this.filterButton = new FilterButton({
+      langIndex: this.langIndex,
+      character: this.characters[this.charIndex].filename,
+      onClick: () => {
+        window.dispatchEvent(tooltipEvent(0));
+      },
+    });
     new InformationButton({
       langIndex: this.langIndex,
       onClick: () => {
         window.dispatchEvent(tooltipEvent(1));
-        this.tooltipOpen[0] = false;
-        this.tooltipOpen[1] = !this.tooltipOpen[1];
-        this.tooltipOpen[2] = false;
-        return this.tooltipOpen[1];
       },
     });
     new LanguageButton({
       onClick: () => {
         window.dispatchEvent(tooltipEvent(2));
-        this.tooltipOpen[0] = false;
-        this.tooltipOpen[1] = false;
-        this.tooltipOpen[2] = !this.tooltipOpen[2];
-        return this.tooltipOpen[2];
       },
     });
   }
@@ -84,14 +86,14 @@ class App {
       this.renderCharacterCards();
     });
 
-    window.addEventListener('languageChange', () => {
-      this.langIndex = getCookie(LANGUAGE_INDEX_COOKIE);
+    window.addEventListener('languageChange', (e) => {
+      this.langIndex = e.detail.index;
       this.renderTable();
       window.dispatchEvent(tooltipEvent(-1));
-      this.tooltipOpen = [false, false, false];
     });
 
     this.$tbodyOfCharacters.addEventListener('click', (e) => {
+      // 캐릭터 선택 시
       const { target } = e;
       if (!target.dataset.character) {
         return;
@@ -100,16 +102,26 @@ class App {
       const { character } = target.dataset;
       this.charIndex = +character;
       setCookie(CHARACTER_INDEX_COOKIE, character);
+      window.dispatchEvent(tooltipEvent(-1));
       this.render();
       smoothScrollTop(this.$wrapperOfMovelist);
       this.charMenuOpen = false;
       if (window.innerWidth <= 800) {
         this.$charContainer.style.display = 'none';
       }
+      this.filterButton.removeEvent();
+      this.filterButton = new FilterButton({
+        langIndex: this.langIndex,
+        character: this.characters[this.charIndex].filename,
+        onClick: () => {
+          window.dispatchEvent(tooltipEvent(0));
+        },
+      });
     });
 
     const $menuButton = document.querySelector('.movelist-header__button');
     $menuButton.addEventListener('click', () => {
+      // 모바일에서 캐릭터 메뉴 버튼 클릭 시
       this.charMenuOpen = true;
       this.$charContainer.style.display = 'flex';
     });
@@ -118,6 +130,7 @@ class App {
       '.close-button-wrapper > button'
     );
     $closeButton.addEventListener('click', () => {
+      // 모바일에서 캐릭터 메뉴 닫기 버튼 클릭 시
       this.charMenuOpen = false;
       this.$charContainer.style.display = 'none';
     });
@@ -143,7 +156,10 @@ class App {
 
   renderTable() {
     const { name, filename } = this.characters[this.charIndex];
-    new Table({
+    if (this.commandTable) {
+      this.commandTable.removeEvent();
+    }
+    this.commandTable = new Table({
       name,
       movelistJson: movelistJson[filename],
       languageJson: languageJson[filename],

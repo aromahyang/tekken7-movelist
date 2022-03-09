@@ -10,4 +10,16 @@ const languageEvent = (index) => {
   });
 };
 
-export { tooltipEvent, languageEvent };
+const specialMoveEvent = (id) => {
+  return new CustomEvent('specialMoveClick', {
+    detail: { id },
+  });
+};
+
+const extraMoveEvent = (values) => {
+  return new CustomEvent('extraMoveChange', {
+    detail: { values },
+  });
+};
+
+export { tooltipEvent, languageEvent, specialMoveEvent, extraMoveEvent };

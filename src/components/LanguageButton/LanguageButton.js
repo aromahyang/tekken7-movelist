@@ -11,8 +11,9 @@ class LanguageButton {
 
   addEvent() {
     this.$target.addEventListener('click', () => {
-      this.tooltipOpen = this.onClick();
+      this.tooltipOpen = !this.tooltipOpen;
       this.tooltip.render(this.tooltipOpen);
+      this.onClick();
     });
     window.addEventListener('tooltipChange', (e) => {
       if (e.detail.index !== 2) {

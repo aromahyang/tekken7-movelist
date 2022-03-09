@@ -18,22 +18,21 @@
   z-index: 100;
 }
 
-.tooltip-container::before,
-.tooltip-container::after {
-  content: " ";
+.tooltip-arrow-border,
+.tooltip-arrow-black {
   position: absolute;
   right: 0;
   border-style: solid;
 }
 
-.tooltip-container::before {
+.tooltip-arrow-border {
   margin-right: 8px;
   bottom: calc(100% + 1px);
-  border-color: transparent transparent rgba(12,73,90,.75) transparent;
+  border-color: transparent transparent rgba(12, 73, 90, 0.75) transparent;
   border-width: 6px;
 }
 
-.tooltip-container::after {
+.tooltip-arrow-black {
   margin-right: 9px;
   bottom: 100%;
   border-color: transparent transparent black transparent;
@@ -42,8 +41,10 @@
 
 .tooltip-content {
   font-family: 'Core Sans G', Arial, sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(12, 73, 90, 0.75) rgba(0, 0, 0, 0.1);
 }
 
 .tooltip-content::-webkit-scrollbar {
@@ -51,13 +52,13 @@
 }
 
 .tooltip-content::-webkit-scrollbar-thumb {
-  background-color: rgba(12,73,90,.75);
+  background-color: rgba(12, 73, 90, 0.75);
   border-radius: 2px;
 }
 
 .tooltip-content::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,.1);
-  border: 1px solid rgba(12,73,90,.75);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(12, 73, 90, 0.75);
   border-radius: 2px;
 }
 
@@ -67,11 +68,30 @@
   }
 }
 
+.filter-tooltip {
+  max-width: 200px;
+  max-height: 480px;
+  padding: 8px;
+}
+
+.filter-tooltip .special-move {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.filter-tooltip .tooltip-divider {
+  width: 100%;
+  height: 2px;
+  margin: 8px 0;
+  background-color: rgba(12, 73, 90, 0.75);
+}
+
 .information-tooltip {
   min-width: 160px;
   height: 50%;
   min-height: 240px;
   max-height: 480px;
+  padding: 4px 12px;
 }
 
 .language-tooltip {
@@ -81,7 +101,7 @@
 }
 
 .information-tooltip > p {
-  padding: 4px 12px;
+  padding: 4px 0;
 }
 
 .language-tooltip > label {
@@ -89,22 +109,48 @@
 }
 
 /* checkbox */
-.tooltip-content input[type="checkbox"] {
-  display: none;
-}
-
 .tooltip-content label {
+  position: relative;
   cursor: pointer;
 }
 
-.tooltip-content input[type="checkbox"] {
+.tooltip-content input[type='checkbox'] {
+  appearance: none;
   position: relative;
   display: inline-block;
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(12,73,90, 1);
+  margin: 4px 6px 4px 4px;
+  border: 2px solid rgba(12, 73, 90, 1);
   border-radius: 2px;
   cursor: pointer;
+}
+
+.tooltip-content input[type='checkbox']:checked ~ .checkmark {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background-color: rgba(12, 73, 90, 1);
+}
+
+.tooltip-content .checkmark:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  display: none;
+}
+
+.tooltip-content input[type='checkbox']:checked ~ .checkmark:after {
+  display: block;
 }
 
 /* radio */
@@ -114,32 +160,33 @@
   cursor: pointer;
 }
 
-.tooltip-content input[type="radio"] {
+.tooltip-content input[type='radio'] {
   appearance: none;
   position: relative;
   display: inline-block;
   width: 16px;
   height: 16px;
+  margin-left: 0;
   margin-right: 6px;
-  border: 2px solid rgba(12,73,90, 1);
+  border: 2px solid rgba(12, 73, 90, 1);
   border-radius: 50%;
   cursor: pointer;
 }
 
-.tooltip-content input[type="radio"]:checked {
+.tooltip-content input[type='radio']:checked {
   appearance: none;
   position: relative;
 }
 
-.tooltip-content input[type="radio"]:checked::after {
-  content: "";
+.tooltip-content input[type='radio']:checked::after {
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 4px;
   height: 4px;
-  border: 2px solid rgba(12,73,90, 1);
+  border: 2px solid rgba(12, 73, 90, 1);
   border-radius: 100%;
-  background-color: rgba(12,73,90, 1);
+  background-color: rgba(12, 73, 90, 1);
 }

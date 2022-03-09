@@ -30,7 +30,12 @@ class InformationTooltip {
       const clientRect = this.$button.getBoundingClientRect();
       this.$target.style.top = `${clientRect.top + 36}px`;
       this.$target.style.right = `calc(100% - ${clientRect.right}px)`;
-      this.$target.innerHTML = this.template(langIndex);
+      const $section = this.$target.querySelector('section');
+      if (!$section) {
+        this.$target.insertAdjacentHTML('beforeend', this.template(langIndex));
+      } else {
+        $section.outerHTML = this.template(langIndex);
+      }
     } else {
       this.$target.style.display = 'none';
     }

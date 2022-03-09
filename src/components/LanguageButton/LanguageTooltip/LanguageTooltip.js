@@ -2,8 +2,8 @@ import {
   LANGUAGE_INDEX_COOKIE,
   getCookie,
   setCookie,
-} from '../../../utils/cookies';
-import { languageEvent } from '../../../events';
+} from '~/utils/cookies';
+import { languageEvent } from '~/events';
 
 class LanguageTooltip {
   constructor({ $button }) {
