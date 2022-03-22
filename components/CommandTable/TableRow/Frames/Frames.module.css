@@ -1,0 +1,34 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8px;
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    width: 88px;
+    font-size: 14px;
+  }
+}
+
+.content {
+  display: flex;
+}
+
+@media only screen and (max-width: 800px) {
+  .content {
+    flex-wrap: wrap;
+  }
+}
+
+.positive {
+  color: #0f0;
+}
+
+.zero {
+  color: #ff0;
+}
+
+.negative {
+  color: #f00;
+}

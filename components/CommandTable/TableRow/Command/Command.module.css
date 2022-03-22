@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow-x: auto;
+  padding: 8px 0;
+  scrollbar-width: thin;
+}
+
+.container::-webkit-scrollbar {
+  width: unset;
+  height: 8px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: rgba(12, 73, 90, 0.75);
+  border-radius: 2px;
+}
+
+.container::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(12, 73, 90, 0.75);
+  border-radius: 2px;
+}
+
+.container > span {
+  word-break: keep-all;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.container > div {
+  width: 40px;
+  height: auto;
+  padding: 1px;
+}
+
+@media only screen and (min-width: 500px) and (max-width: 800px) {
+  .container > div {
+    width: 32px;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  .container > div {
+    width: 24px;
+  }
+}

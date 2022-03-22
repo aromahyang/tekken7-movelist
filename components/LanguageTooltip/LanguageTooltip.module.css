@@ -1,0 +1,43 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 12px;
+}
+
+.content > label {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.content input[type='radio'] {
+  appearance: none;
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 0;
+  margin-right: 6px;
+  border: 2px solid rgba(12, 73, 90, 1);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.content input[type='radio']:checked {
+  appearance: none;
+  position: relative;
+}
+
+.content input[type='radio']:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  border: 2px solid rgba(12, 73, 90, 1);
+  border-radius: 100%;
+  background-color: rgba(12, 73, 90, 1);
+}

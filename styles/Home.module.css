@@ -1,0 +1,112 @@
+.container {
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  background-image: url('/images/background.jpg');
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: auto;
+}
+
+/* ==== header ==== */
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 16px;
+  font-family: Trump, Arial, sans-serif;
+}
+
+@media only screen and (max-width: 800px) {
+  .header {
+    padding: 8px 16px;
+  }
+}
+
+.header > div {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  min-width: 150px;
+  margin: 0;
+}
+
+.header > h3 {
+  margin-top: 3px;
+  color: var(--white);
+  font-family: Trump, Arial, sans-serif;
+  font-style: italic;
+  font-size: 50px;
+  text-shadow: 0 0 10px #0af1f5;
+}
+
+@media only screen and (max-width: 800px) {
+  .header > div {
+    max-width: 160px;
+    min-width: 80px;
+  }
+
+  .header > h3 {
+    margin-left: 8px;
+    font-size: 32px;
+  }
+}
+
+/* ==== main ==== */
+
+.main {
+  position: relative;
+  height: calc(100% - 180px);
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .main {
+    flex-direction: column;
+    align-items: initial;
+    min-width: calc(360px - 8px * 2);
+    width: 100%;
+    height: calc(100% - 132px);
+    max-height: 80%;
+    padding: 0 8px;
+  }
+}
+
+.divider {
+  width: 2px;
+  height: 100%;
+  margin: 0 6px;
+  background-color: var(--secondary-50);
+}
+
+@media only screen and (max-width: 800px) {
+  .divider {
+    display: none;
+  }
+}
+
+/* ==== footer ==== */
+
+.footer {
+  max-width: calc(200px + 14px + 970px);
+  margin-top: 12px;
+  margin-left: 20px;
+}
+
+.footer > p {
+  margin-bottom: 4px;
+  color: var(--gray);
+  text-align: right;
+  font-family: 'Core Sans G', Arial, sans-serif;
+  font-size: 12px;
+}
+
+.footer > .ad-container {
+  position: relative;
+}

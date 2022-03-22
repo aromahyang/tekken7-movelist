@@ -1,0 +1,50 @@
+.container {
+  margin-right: 8px;
+  text-align: right;
+}
+
+.spin,
+.homing,
+.crush,
+.bound {
+  font-weight: 700;
+}
+
+.spin::before {
+  content: 'SPIN';
+  color: #1a8000;
+}
+
+.homing::before {
+  content: 'HOMING';
+  color: #0079ff;
+}
+
+.crush::before {
+  content: 'CRUSH';
+  color: #cb0000;
+}
+
+.bound::before {
+  content: 'BOUND';
+  color: #ffa500;
+}
+
+@media only screen and (max-width: 800px) {
+  .spin::before {
+    content: 'TS';
+  }
+
+  .homing::before {
+    content: 'HA';
+  }
+
+  .crush::before {
+    content: 'PC';
+  }
+
+  .bound::before {
+    content: 'WB';
+  }
+}
+

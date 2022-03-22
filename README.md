@@ -19,7 +19,3 @@ You can visit website: [https://tekken7.movelist.xyz](https://tekken7.movelist.x
 [tekkenpunishment.com](https://tekkenpunishment.com/)
 
 [FRAMEDATA for TK7RF](https://play.google.com/store/apps/details?id=devkdr.framedatafortekken7fr)
-
-### TODO
-
-- [ ] SSR(Server Side Rendering)/SEO

@@ -1,0 +1,90 @@
+/* ==== Special Move ==== */
+
+.special-td {
+  position: relative;
+  color: var(--white);
+  font-family: 'Core Sans G', Arial, sans-serif;
+  border: 2px solid var(--primary-75);
+  border-radius: 1px;
+  background-color: var(--primary-75);
+}
+
+.special-td > div {
+  position: absolute;
+  width: 40px;
+  height: 25px;
+  border-bottom-right-radius: 20px;
+  font-size: 15px;
+  text-indent: 4px;
+  background-color: var(--primary-75);
+}
+
+@media only screen and (max-width: 800px) {
+  .special-td > div {
+    font-size: 10px;
+    width: 25px;
+    height: 15px;
+    text-indent: 1px;
+  }
+}
+
+.special-td > p {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  font-weight: bold;
+}
+
+/* ==== Noraml Move ==== */
+
+.td {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  font-family: 'Core Sans G', Arial, sans-serif;
+  color: var(--white);
+  border: 2px solid var(--primary-75);
+  border-radius: 4px;
+  background-color: var(--black-50);
+}
+
+/* ==== left panel of td ==== */
+
+.left-panel {
+  min-width: 50%;
+  max-width: 50vw;
+  overflow-x: auto;
+}
+
+@media only screen and (max-width: 800px) {
+  .left-panel {
+    max-width: 60vw;
+  }
+}
+
+.content {
+  max-width: 50vw;
+  margin-left: 50px;
+}
+
+@media only screen and (max-width: 800px) {
+  .content {
+    margin-left: 28px;
+  }
+}
+
+/* ==== right panel of td ==== */
+
+.right-panel {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  margin-right: 10px;
+  padding-top: 5px;
+}
+
+@media only screen and (max-width: 800px) {
+  .right-panel {
+    grid-template-columns: auto 88px;
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  margin: 3px 0 5px 0;
+}
+
+.hit-level {
+  display: flex;
+  align-items: center;
+}
+
+.hit-level::after {
+  content: '';
+  width: 2px;
+  height: 100%;
+  margin: 0 10px;
+  background-color: #0c495a;
+}
+
+.icon::before {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hit-level > p:not(:last-of-type)::after {
+  font: var(--fa-font-solid);
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
+  content: '\f054';
+  color: var(--white);
+  margin: 0 5px;
+}
+
+.high {
+  color: #ffc6ff;
+}
+
+.mid {
+  color: #ffff79;
+}
+
+.low {
+  color: #9cd3fc;
+}
+
+.unblock {
+  color: #0cc;
+}
+
+.parry {
+  color: #ad85ee;
+}
+
+@media only screen and (max-width: 800px) {
+  .expression {
+    display: none;
+  }
+}

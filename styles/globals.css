@@ -1,0 +1,154 @@
+:root {
+  --gray: #9e9e9e;
+  --primary: rgba(12, 73, 90, 1);
+  --primary-75: rgba(12, 73, 90, 0.75);
+  --secondary-75: rgba(23, 147, 181, 0.75);
+  --secondary-50: rgba(23, 147, 181, 0.5);
+  --blue-shadow: #0af1f5;
+  --black: #000;
+  --black-75: rgba(0, 0, 0, 0.75);
+  --black-50: rgba(0, 0, 0, 0.5);
+  --white: #fff;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: 360px;
+  padding: 0;
+  margin: 0;
+  font-family: Core Sans G, Trump, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-75) rgba(0, 0, 0, 0.1);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--primary-75);
+  border-radius: 2px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--primary-75);
+  border-radius: 2px;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+p,
+h3 {
+  margin: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  p,
+  span {
+    font-size: 14px;
+  }
+}
+
+@font-face {
+  font-family: 'Trump';
+  src: url('/fonts/TrumpGothicEastBold.ttf');
+}
+
+@font-face {
+  font-family: 'Core Sans G';
+  src: url('/fonts/CoreSansG-Light.ttf');
+}
+
+.icon-button {
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  color: var(--white);
+  text-align: center;
+  text-shadow: 0 0 6px #0af1f5;
+  border: 2px solid var(--primary-75);
+  border-radius: 30px; /* 50% 하면 Safari에서 찌그러져서 나옴 */
+  background-color: var(--black-75);
+}
+
+.icon-button > i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tooltip-container {
+  position: absolute;
+  background-color: var(--black);
+  border: 1px solid var(--primary-75);
+  border-radius: 4px;
+  color: var(--white);
+  z-index: 100;
+}
+
+.tooltip-arrow-border,
+.tooltip-arrow-border {
+  position: absolute;
+  right: 0;
+  border-style: solid;
+}
+
+.tooltip-arrow-border {
+  margin-right: 8px;
+  bottom: calc(100% + 1px);
+  border-color: transparent transparent var(--primary-75) transparent;
+  border-width: 6px;
+}
+
+.tooltip-arrow-border {
+  margin-right: 9px;
+  bottom: 100%;
+  border-color: transparent transparent var(--black) transparent;
+  border-width: 5px;
+}
+
+.tooltip-content {
+  font-family: 'Core Sans G', Arial, sans-serif;
+  font-size: 16px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-75) rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tooltip-content::-webkit-scrollbar-thumb {
+  background-color: var(--primary-75);
+  border-radius: 2px;
+}
+
+.tooltip-content::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--primary-75);
+  border-radius: 2px;
+}
+
+@media only screen and (max-width: 800px) {
+  .tooltip-content {
+    font-size: 14px;
+  }
+}
+

@@ -1,0 +1,11 @@
+.content {
+  min-width: 160px;
+  height: 50%;
+  min-height: 240px;
+  max-height: 480px;
+  padding: 4px 12px;
+}
+
+.content > p {
+  padding: 4px 0;
+}

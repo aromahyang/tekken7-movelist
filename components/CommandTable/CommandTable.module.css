@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw - 214px);
+  max-width: 970px;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: hidden;
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.table-wrapper {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+}
